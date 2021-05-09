@@ -1,0 +1,43 @@
+@media (min-width: 576px) {
+    .asd {
+        display: none;
+    }
+    .h-sm-100 {
+        height: 100%;
+    }
+}
+
+.bg-color{
+    background-color: white;
+}
+
+.bg {
+    background-color: #f6f8fc;
+}
+
+.bgSelected {
+    background: -webkit-linear-gradient(#4b2ae9, #9e4ef5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.itemBorder {
+    border-radius: 1px;
+    border-color: #f6f8fc;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.asd {
+    background: linear-gradient(
+    180deg,
+    rgba(94, 189, 62, 1) 34%,
+    rgba(255, 185, 0, 1),
+    rgba(247, 130, 0, 1),
+    rgba(226, 56, 56, 1),
+    rgba(151, 57, 153, 1),
+    rgba(0, 156, 223, 1) 91%
+    )
+}
