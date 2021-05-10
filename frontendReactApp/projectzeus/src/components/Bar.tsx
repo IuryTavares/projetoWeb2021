@@ -1,11 +1,16 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-import styles from '../styles/Bar.module.css'
+import styles from '../styles/components/Bar.module.css'
 import {Row, Col, Navbar, Nav, NavDropdown} from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingBag, faLemon, faPenSquare, faListAlt, faComments, faUser } from '@fortawesome/free-solid-svg-icons'
+import {IoBagCheck, IoLogoWechat } from 'react-icons/io5';
+import {GiFruitBowl, GiReceiveMoney} from 'react-icons/gi'
+import {GoChecklist} from 'react-icons/go'
+import {FaUserCircle} from 'react-icons/fa'
+import {CardItemList} from '../components/CardItemList'
+
+
 
 export function Bar() {
-    const navDropdownTitle = (<span className ="me-1"><FontAwesomeIcon icon={faUser} className="me-2"/> Iury Tavares</span>);
+    const navDropdownTitle = (<span className ="me-1"><FaUserCircle className="me-2 fs-5 bi-speedometer2"/> <IoLogoWechat className="me-2 fs-5 bi-speedometer2"/>Iury Tavares</span>);
     
     return (
       <div className="container-fluid overflow-hidden">
@@ -13,27 +18,32 @@ export function Bar() {
             <Col xl="2" lg="2" md="3"  className="px-sm-2 px-0 d-flex sticky-top d-none d-xl-block d-lg-block d-md-block"> {/* arrumar os icones, tirar esses d-none...*/}
                 <div className="flex-sm-column flex-row align-items-sm-start px-3 pt-2">
                     <a href="/" className="d-flex pb-sm-3 text-decoration-none">
+                    
                         <span className="fs-5 text-secondary">P<span className="d-none d-sm-inline ">rojetoZeus</span></span>
                     </a>
                     <ul className="nav nav-pills flex-sm-column" id="menu">
                         <li className="nav-item">
                             <a href="#" className={`px-0 ${styles.bgSelected}` }>
-                                <FontAwesomeIcon icon={faShoppingBag} aria-hidden="true" className="me-2 fs-5 bi-speedometer2"/><span className="ms-1 d-none d-sm-inline">Cotações</span>
+                                <IoBagCheck className="me-2 fs-5 bi-speedometer2"/>
+                                <span className="ms-1 d-none d-sm-inline">Cotações</span>
                             </a>
                         </li>
                         <li>
                             <a href="#"className="nav-link px-0 text-secondary">
-                                <FontAwesomeIcon icon={faLemon} aria-hidden="true" className="me-2 fs-5 bi-speedometer2"/><span className="ms-1 d-none d-sm-inline">Meus Produtos</span> 
+                                <GiFruitBowl className="me-2 fs-5 bi-speedometer2"/>
+                                <span className="ms-1 d-none d-sm-inline">Meus Produtos</span> 
                             </a>
                         </li>
                         <li>
                             <a href="#" className="nav-link px-0 text-secondary">
-                                <FontAwesomeIcon icon={faPenSquare} aria-hidden="true" className="me-2 fs-5 bi-speedometer2"/><span className="ms-1 d-none d-sm-inline text-secondary">Meus Bid's</span>
+                                <GiReceiveMoney className="me-2 fs-5 bi-speedometer2"/>
+                                <span className="ms-1 d-none d-sm-inline text-secondary">Meus Bid's</span>
                             </a>
                         </li>
                         <li className="dropdown">
                             <a href="#" className="nav-link px-0 text-secondary">
-                                <FontAwesomeIcon icon={faListAlt} aria-hidden="true" className="me-2 fs-5 bi-speedometer2"/><span className="ms-1 d-none d-sm-inline text-secondary">Transações</span>
+                                <GoChecklist className="me-2 fs-5 bi-speedometer2"/>
+                                <span className="ms-1 d-none d-sm-inline text-secondary">Transações</span>
                             </a>
                         </li>
                     </ul>
@@ -49,7 +59,7 @@ export function Bar() {
                                 {/*<Navbar.Collapse id="basic-navbar-nav">*/}
                                 <Nav className="ms-auto py-0">
                                     <div className={`${styles.itemBorder} me-3`}>
-                                        <Nav.Link href="#home" ><FontAwesomeIcon icon={faComments} aria-hidden="true" className="mx-2 fs-5 bi-speedometer2"/></Nav.Link>
+                                        <Nav.Link href="#home" ></Nav.Link>
                                     </div>
                                     <NavDropdown title={navDropdownTitle} id="basic-nav-dropdown">
                                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -66,8 +76,8 @@ export function Bar() {
                 </Row>
                 <Row className="overflow-auto">
                     <Col className="p-0 overflow-auto">
-                        <div className={`vh-100 w-100 p-0 ${styles.bg}`}> <p>rota das telas</p>
-                        <FontAwesomeIcon icon={faShoppingBag} className={styles.asd}/>
+                        <div className={`vh-100 w-100 p-0 ${styles.bg}`}> 
+                            <CardItemList></CardItemList>
                         </div>
                     </Col>
                 </Row>
