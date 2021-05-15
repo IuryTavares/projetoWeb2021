@@ -22,12 +22,12 @@ export function Bar() {
         <Row className="vh-100 overflow-auto">
             <Col xl="2" lg="2" md="3" style={{zIndex: 1}}  className={`${styles.bgColor} ${styles.shadowBar} px-sm-2 px-0 d-flex sticky-top d-none d-xl-block d-lg-block d-md-block`}>
                 <div className="flex-sm-column flex-row align-items-sm-start px-3 pt-2">
-                    <a href="/" style={{fontWeight: 600}} className="d-flex pb-sm-3 text-decoration-none">
-                        <span className="fs-5 text-secondary">P<span className="d-none d-sm-inline ">rojetoZeus</span></span>
+                    <a href="#" style={{fontWeight: 600}} className={`${styles.bgSelected} d-flex pb-sm-3 text-decoration-none`}>
+                        <span className={`${styles.bgSelected} fs-5`}>P<span className="d-none d-sm-inline ">rojetoZeus</span></span>
                     </a>
                     <ul className="nav nav-pills flex-sm-column" id="menu">
                         <li className="my-3">
-                            <a href="#" className={` px-0 ${styles.bgSelected} text-decoration-none` }>
+                            <a href="#" className={`px-0 ${styles.bgSelected} text-decoration-none` }>
                                 <svg width="0" height="0">
                                     <linearGradient id="blue-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
                                         <stop stopColor="#4b2ae9" offset="0%" />
@@ -64,6 +64,7 @@ export function Bar() {
                     <Col>
                         <main className="row">
                             <Navbar expand="md" className="py-0">
+                                <Navbar.Brand href="#home" className="mx-auto d-none d-sm-inline">Navbar</Navbar.Brand>
                                 <Navbar.Brand href="#home" className="d-md-none">P</Navbar.Brand>
                                 <Nav className="ms-auto nav-justified" style={{flexDirection: "row"}}>
                                     <div className={`${styles.itemBorder} d-md-none`}>
