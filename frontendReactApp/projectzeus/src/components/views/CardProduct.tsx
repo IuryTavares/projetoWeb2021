@@ -1,5 +1,4 @@
-import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
-import {Row, Col, Card} from 'react-bootstrap'
+import {Row, Col, Card, Form} from 'react-bootstrap'
 import styles from '../../styles/components/views/CardProduct.module.css'
 import {AiFillEye} from 'react-icons/ai'
 import {IoFastFoodSharp} from 'react-icons/io5'
@@ -22,6 +21,9 @@ export function CardProduct () {
                             </linearGradient>
                         </svg>
                         <Card.Link href="#"><AiFillEye size="2rem" style={{ fill: "url(#blue-gradient)"}}/></Card.Link>
+                        <Card.Link href="#">
+                            <Form.Check  type="checkbox" className="d-inline-block"/>
+                        </Card.Link>
                    </Col>
                    <Col xs="4" className="ps-0 pe-2">
                         <IoFastFoodSharp className={styles.icon} size="6rem"/>

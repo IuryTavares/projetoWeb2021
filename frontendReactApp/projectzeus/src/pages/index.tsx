@@ -12,7 +12,7 @@ import { MyProductsPage } from '../components/MyProductsPage'
 export default function Home() {
   return (
     <div className={styles.container}>
-      <MyProductsPage/>
+      <Bar/>
     </div>
   )
 }

@@ -7,8 +7,7 @@ import {GoChecklist} from 'react-icons/go'
 import {FaUserCircle} from 'react-icons/fa'
 import {BsFillChatDotsFill} from 'react-icons/bs'
 import {CardItemList} from '../components/CardItemList'
-
-
+import {FiMenu} from 'react-icons/fi'
 
 export function Bar() {
     const navDropdownTitle = (
@@ -23,7 +22,7 @@ export function Bar() {
             <Col xl="2" lg="2" md="3" style={{zIndex: 1}}  className={`${styles.bgColor} ${styles.shadowBar} px-sm-2 px-0 d-flex sticky-top d-none d-xl-block d-lg-block d-md-block`}>
                 <div className="flex-sm-column flex-row align-items-sm-start px-3 pt-2">
                     <a href="#" style={{fontWeight: 600}} className={`${styles.bgSelected} d-flex pb-sm-3 text-decoration-none`}>
-                        <span className={`${styles.bgSelected} fs-5`}>P<span className="d-none d-sm-inline ">rojetoZeus</span></span>
+                        <FiMenu color="black" size="1.5rem" className="mt-2 ms-1"></FiMenu>
                     </a>
                     <ul className="nav nav-pills flex-sm-column" id="menu">
                         <li className="my-3">
@@ -64,7 +63,7 @@ export function Bar() {
                     <Col>
                         <main className="row">
                             <Navbar expand="md" className="py-0">
-                                <Navbar.Brand href="#home" className="mx-auto d-none d-sm-inline">Navbar</Navbar.Brand>
+                                <Navbar.Brand href="#home" style={{fontWeight: 600}} className={`${styles.bgSelected} mx-auto d-none d-sm-inline`}>ProjetoZeus</Navbar.Brand>
                                 <Navbar.Brand href="#home" className="d-md-none">P</Navbar.Brand>
                                 <Nav className="ms-auto nav-justified" style={{flexDirection: "row"}}>
                                     <div className={`${styles.itemBorder} d-md-none`}>
