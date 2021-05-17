@@ -6,7 +6,7 @@ import {GiFruitBowl, GiReceiveMoney} from 'react-icons/gi'
 import {GoChecklist} from 'react-icons/go'
 import {FaUserCircle} from 'react-icons/fa'
 import {BsFillChatDotsFill} from 'react-icons/bs'
-import {CardItemList} from '../components/CardItemList'
+import {QuotesPage} from '../components/QuotesPage'
 
 
 
@@ -104,8 +104,8 @@ export function Bar() {
                 </Row>
                 <Row>
                     <Col>
-                        <div className="w-100 pt-3"> 
-                            <CardItemList></CardItemList>
+                        <div className="w-100 pt-3">
+                            <QuotesPage></QuotesPage> 
                         </div>
                     </Col>
                 </Row>
