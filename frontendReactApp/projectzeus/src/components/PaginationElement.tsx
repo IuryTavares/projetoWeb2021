@@ -1,4 +1,3 @@
-import {Pagination} from 'react-bootstrap'
 import styles from '../styles/components/PaginationElement.module.css'
 
 export function PaginationElement() {
