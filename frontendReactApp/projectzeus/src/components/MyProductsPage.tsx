@@ -1,17 +1,24 @@
-import {Row, Col, Button, Modal, Form} from 'react-bootstrap'
+import {Row, Col, Button, Modal, Form, ListGroup} from 'react-bootstrap'
 import styles from '../styles/components/MyProductsPage.module.css'
 import { CardProduct } from './views/CardProduct'
 import {IoAddCircleSharp} from 'react-icons/io5'
 import {RiShoppingCart2Fill} from 'react-icons/ri'
+import {ImCancelCircle} from 'react-icons/im'
 import { useState } from 'react'
 
 export function MyProductsPage() {
-    const [show, setShow] = useState(false);
+    const [addProduct, setShow] = useState(false);
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [addQuotes, setShowAddQuotes] = useState(false);
+    const handleCloseAddQuotes = () => setShowAddQuotes(false);
+    const handleShowAddQuotes = () => setShowAddQuotes(true);
+
     return(
         <div>
+            <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Meus Produtos</h5>
             <Row className="mb-2">
                 <Col>
                     <CardProduct/>
@@ -65,13 +72,133 @@ export function MyProductsPage() {
                 </svg>
                 <Row>
                     <Col>
-                        <RiShoppingCart2Fill size="4.5rem" style={{ fill: "url(#blue-gradient)"}}/>
+                        <a href="#" onClick={handleShowAddQuotes}>
+                            <RiShoppingCart2Fill size="4.5rem" style={{ fill: "url(#blue-gradient)"}}/>
+                        </a>
+                        <Modal size="lg" show={addQuotes} onHide={handleCloseAddQuotes}>
+                            <Modal.Header className={styles.shadowModalHeader} closeButton>
+                                <Modal.Title className={styles.title}>Criar Quotação</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body className={styles.bgModal}>
+                            <Form>
+                                <Row>
+                                    <Col>
+                                        <Row className="mb-3">
+                                            <Col>
+                                                <Form.Control type="date" placeholder="Data de Início" />
+                                            </Col>
+                                        </Row>
+                                        <Row className="mb-3">
+                                            <Col>
+                                                <Form.Control type="date" placeholder="Data do Fim" />
+                                            </Col>
+                                        </Row>
+                                        <Row className="mb-3">
+                                            <Col>
+                                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                                                <Form.Control as="textarea" rows={3} placeholder="Descrição" />
+                                            </Form.Group>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                    <Col>
+                                        <Row className="mb-3">
+                                            <Col>
+                                                <ListGroup>
+                                                    <ListGroup.Item>
+                                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                                            <Form.Label column sm={6}>
+                                                                Castanha do Pará
+                                                            </Form.Label>
+                                                            <Col sm={5}>
+                                                                <Form.Control type="number" placeholder="Quant." />
+                                                            </Col>
+                                                            <Col sm={1}>
+                                                                <a href="#">
+                                                                    <ImCancelCircle className="mt-2" color="red"/>
+                                                                </a>
+                                                            </Col>
+                                                        </Form.Group>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                                            <Form.Label column sm={6}>
+                                                                Castanha do Pará
+                                                            </Form.Label>
+                                                            <Col sm={5}>
+                                                                <Form.Control type="number" placeholder="Quant." />
+                                                            </Col>
+                                                            <Col sm={1}>
+                                                                <a href="#">
+                                                                    <ImCancelCircle className="mt-2" color="red"/>
+                                                                </a>
+                                                            </Col>
+                                                        </Form.Group>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                                            <Form.Label column sm={6}>
+                                                                Castanha do Pará
+                                                            </Form.Label>
+                                                            <Col sm={5}>
+                                                                <Form.Control type="number" placeholder="Quant." />
+                                                            </Col>
+                                                            <Col sm={1}>
+                                                                <a href="#">
+                                                                    <ImCancelCircle className="mt-2" color="red"/>
+                                                                </a>
+                                                            </Col>
+                                                        </Form.Group>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                                            <Form.Label column sm={6}>
+                                                                Castanha do Pará
+                                                            </Form.Label>
+                                                            <Col sm={5}>
+                                                                <Form.Control type="number" placeholder="Quant." />
+                                                            </Col>
+                                                            <Col sm={1}>
+                                                                <a href="#">
+                                                                    <ImCancelCircle className="mt-2" color="red"/>
+                                                                </a>
+                                                            </Col>
+                                                        </Form.Group>
+                                                    </ListGroup.Item>
+                                                    <ListGroup.Item>
+                                                        <Form.Group as={Row} controlId="formHorizontalEmail">
+                                                            <Form.Label column sm={6}>
+                                                                Castanha do Pará
+                                                            </Form.Label>
+                                                            <Col sm={5}>
+                                                                <Form.Control type="number" placeholder="Quant." />
+                                                            </Col>
+                                                            <Col sm={1}>
+                                                                <a href="#">
+                                                                    <ImCancelCircle className="mt-2" color="red"/>
+                                                                </a>
+                                                            </Col>
+                                                        </Form.Group>
+                                                    </ListGroup.Item>
+                                                </ListGroup>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                </Row>
+                            </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button className={styles.btColor} onClick={handleCloseAddQuotes}>
+                                    Criar
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
                         <a href="#" onClick={handleShow}><IoAddCircleSharp onClick={handleShow} size="4.5rem" style={{ fill: "url(#blue-gradient)"}}/></a>
-                        <Modal show={show} onHide={handleClose}>
+                        <Modal show={addProduct} onHide={handleClose}>
                             <Modal.Header className={styles.shadowModalHeader} closeButton>
                                 <Modal.Title className={styles.title}>Adicionar Produto</Modal.Title>
                             </Modal.Header>
