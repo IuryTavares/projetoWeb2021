@@ -1,11 +1,9 @@
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import {Button, Card, Form, InputGroup, FormControl} from 'react-bootstrap'
 import {FaUserCircle} from 'react-icons/fa'
 import {RiLockPasswordFill} from 'react-icons/ri'
 import styles from '../styles/components/Login.module.css'
-import Link from 'next/link'
 
-export function Login() {
+export default function Login() {
     return (
         <Card style={{ width: '23rem'}} className={`${styles.cardContainer} mx-auto`}>
             <Card.Body className="py-4">
@@ -37,8 +35,8 @@ export function Login() {
                 </Form.Group>
                 <div className="text-center mb-3 mt-5">
                     <Button type="submit" className={`${styles.btColor} w-100`}>
-                        <Link href="/bar">Login
-                        </Link>
+                        Login
+                        
                     </Button>
                 </div>
             </Form>

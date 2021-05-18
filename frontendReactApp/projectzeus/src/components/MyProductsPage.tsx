@@ -7,10 +7,9 @@ import {ImCancelCircle} from 'react-icons/im'
 import { useState } from 'react'
 
 export function MyProductsPage() {
-    const [addProduct, setShow] = useState(false);
-    
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [addProduct, setShowAddProduct] = useState(false);
+    const handleCloseAddProduct = () => setShowAddProduct(false);
+    const handleShowAddProduct = () => setShowAddProduct(true);
 
     const [addQuotes, setShowAddQuotes] = useState(false);
     const handleCloseAddQuotes = () => setShowAddQuotes(false);
@@ -189,7 +188,7 @@ export function MyProductsPage() {
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button className={styles.btColor} onClick={handleCloseAddQuotes}>
-                                    Criar
+                                    Adicionar
                                 </Button>
                             </Modal.Footer>
                         </Modal>
@@ -197,8 +196,8 @@ export function MyProductsPage() {
                 </Row>
                 <Row>
                     <Col>
-                        <a href="#" onClick={handleShow}><IoAddCircleSharp onClick={handleShow} size="4.5rem" style={{ fill: "url(#blue-gradient)"}}/></a>
-                        <Modal show={addProduct} onHide={handleClose}>
+                        <a href="#" onClick={handleShowAddProduct}><IoAddCircleSharp onClick={handleShowAddProduct} size="4.5rem" style={{ fill: "url(#blue-gradient)"}}/></a>
+                        <Modal show={addProduct} onHide={handleCloseAddProduct}>
                             <Modal.Header className={styles.shadowModalHeader} closeButton>
                                 <Modal.Title className={styles.title}>Adicionar Produto</Modal.Title>
                             </Modal.Header>
@@ -230,7 +229,7 @@ export function MyProductsPage() {
                             </Form>
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button className={styles.btColor} onClick={handleClose}>
+                                <Button className={styles.btColor} onClick={handleCloseAddProduct}>
                                     Adicionar
                                 </Button>
                             </Modal.Footer>

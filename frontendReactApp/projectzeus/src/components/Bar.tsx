@@ -7,7 +7,7 @@ import {GoChecklist} from 'react-icons/go'
 import {FaUserCircle} from 'react-icons/fa'
 import {BsFillChatDotsFill} from 'react-icons/bs'
 import {QuotesPage} from '../components/QuotesPage'
-import {CardItemList} from '../components/CardItemList'
+import {CardItemList} from './views/CardItemList'
 import {FiMenu} from 'react-icons/fi'
 
 export function Bar() {

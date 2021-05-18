@@ -1,8 +1,8 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-import {CardItemList} from '../components/CardItemList'
+import {CardItemList} from './views/CardItemList'
 import styles from '../styles/components/QuotesPage.module.css'
-import { PaginationElement } from './PaginationElement'
-import {CardItemListTitle} from './CardItemListTitle'
+import { PaginationElement } from './views/PaginationElement'
+import {CardItemListTitle} from './views/CardItemListTitle'
 
 
 export function QuotesPage(){
@@ -10,7 +10,7 @@ export function QuotesPage(){
         <div className="container-fluid">
             <div className="row">
                 <div className="col">
-                    <span><b>Cotações</b></span>
+                    <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Cotação</h5>
                 </div>
             </div>
 
