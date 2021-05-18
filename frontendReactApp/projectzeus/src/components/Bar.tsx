@@ -9,6 +9,8 @@ import {BsFillChatDotsFill} from 'react-icons/bs'
 import {QuotesPage} from '../components/QuotesPage'
 import {CardItemList} from './views/CardItemList'
 import {FiMenu} from 'react-icons/fi'
+import { BidsPage } from './BidsPage';
+import { TransactionPage } from './TransactionPage';
 
 export function Bar() {
     const navDropdownTitle = (
@@ -106,7 +108,7 @@ export function Bar() {
                 <Row>
                     <Col>
                         <div className="w-100 pt-3">
-                            <QuotesPage></QuotesPage> 
+                            <TransactionPage></TransactionPage> 
                         </div>
                     </Col>
                 </Row>
