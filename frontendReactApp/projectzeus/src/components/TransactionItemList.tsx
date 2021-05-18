@@ -1,8 +1,10 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import {Card} from 'react-bootstrap'
-import styles from '../styles/components/CardItemListTitle.module.css'
+import styles from '../styles/components/TransactionItemList.module.css'
+import {AiOutlineEye} from 'react-icons/ai'
+import {GoKebabVertical} from 'react-icons/go'
 
-export function CardItemListTitle(){
+export function TransactionItemList(){
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`} >
             <Card className={styles.cardContainer}>
@@ -16,18 +18,24 @@ export function CardItemListTitle(){
                             Empresa
                         </div>
                         <div className="col d-none d-sm-block">
-                            Data
+                            02/07 - 00:00
                         </div>
                         <div className="col d-none d-xl-block">
-                            Uf
+                            500R$
                         </div>
-                        <div className="col">
-                          
+                        <div className="col ">
+                            <div className="row align-items-center">
+                                <div className="col d-none d-sm-block">
+                                    <AiOutlineEye size="1.5rem"/>
+                                </div>
+                                <div className="col">
+                                   <GoKebabVertical size="1.5rem"></GoKebabVertical>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </Card.Body>
-                
+                </Card.Body> 
             </Card>
         </div>
     );

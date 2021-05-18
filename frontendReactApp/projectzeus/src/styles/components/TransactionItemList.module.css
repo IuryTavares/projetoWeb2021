@@ -3,21 +3,19 @@
     height: 40px;
   
     border-radius: 5px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     padding: 1.5rem 2rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--gray);
-    background-color: var(--bg-light);
-    border: 0;   
+    color: var(black); 
 }
 
 .divCard {
     display: flex;
-    justify-content: center;
-    
+    justify-content: center;  
 }
 
 .container-fluid {
@@ -25,6 +23,5 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    
 }
 

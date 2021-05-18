@@ -1,24 +1,25 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-import {CardItemList} from '../components/CardItemList'
-import styles from '../styles/components/QuotesPage.module.css'
+import styles from '../styles/components/BidsPage.module.css'
 import { PaginationElement } from './PaginationElement'
-import {CardItemListTitle} from './CardItemListTitle'
+import {BidsItemList} from './BidsItemList'
+import { BidsItemListTitle } from './BidsItemListTitle'
 
-export function QuotesPage(){
+
+export function BidsPage(){
     return(
         <div className="container-fluid">
             <div className="row">
                 <div className="col">
-                    <span><b>Cotações</b></span>
+                    <span><b>Meus Bids</b></span>
                 </div>
             </div>
 
             <div className="row">
-                <CardItemListTitle></CardItemListTitle>
+                <BidsItemListTitle></BidsItemListTitle>
             </div>
 
             <div className="row">
-              <CardItemList/>
+              <BidsItemList></BidsItemList>
             </div>
 
             <footer className={styles.footerContainer}>                

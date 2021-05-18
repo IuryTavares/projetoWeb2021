@@ -2,7 +2,6 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import {Card} from 'react-bootstrap'
 import styles from '../styles/components/CardItemList.module.css'
 import {AiOutlineEye, AiOutlineShoppingCart} from 'react-icons/ai'
-import { RiGhost2Fill } from 'react-icons/ri';
 import {GoKebabVertical} from 'react-icons/go'
 
 

@@ -1,8 +1,8 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import {Card} from 'react-bootstrap'
-import styles from '../styles/components/CardItemListTitle.module.css'
+import styles from '../styles/components/BidsItemListTitle.module.css'
 
-export function CardItemListTitle(){
+export function BidsItemListTitle(){
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`} >
             <Card className={styles.cardContainer}>
@@ -19,7 +19,7 @@ export function CardItemListTitle(){
                             Data
                         </div>
                         <div className="col d-none d-xl-block">
-                            Uf
+                            Preço
                         </div>
                         <div className="col">
                           
@@ -27,7 +27,6 @@ export function CardItemListTitle(){
                     </div>
                 </div>
                 </Card.Body>
-                
             </Card>
         </div>
     );
