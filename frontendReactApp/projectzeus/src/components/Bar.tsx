@@ -11,6 +11,7 @@ import {CardItemList} from './views/CardItemList'
 import {FiMenu} from 'react-icons/fi'
 import { BidsPage } from './BidsPage';
 import { TransactionPage } from './TransactionPage';
+import { MyProductsPage } from './MyProductsPage';
 
 export function Bar() {
     const navDropdownTitle = (
@@ -108,7 +109,7 @@ export function Bar() {
                 <Row>
                     <Col>
                         <div className="w-100 pt-3">
-                            <TransactionPage></TransactionPage> 
+                            <TransactionPage/>
                         </div>
                     </Col>
                 </Row>

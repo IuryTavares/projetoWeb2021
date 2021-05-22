@@ -1,10 +1,13 @@
+import homeStyles from '../styles/pages/Home.module.css'
 import {Button, Card, Form, InputGroup, FormControl} from 'react-bootstrap'
 import {FaUserCircle} from 'react-icons/fa'
 import {RiLockPasswordFill} from 'react-icons/ri'
 import styles from '../styles/components/Login.module.css'
+import Link from 'next/link'
 
 export default function Login() {
     return (
+        <div className={homeStyles.container}>
         <Card style={{ width: '23rem'}} className={`${styles.cardContainer} mx-auto`}>
             <Card.Body className="py-4">
             <Form>
@@ -34,16 +37,20 @@ export default function Login() {
                     <Form.Check type="checkbox" label="Lembrar-me" />
                 </Form.Group>
                 <div className="text-center mb-3 mt-5">
-                    <Button type="submit" className={`${styles.btColor} w-100`}>
-                        Login
-                        
-                    </Button>
+                    <Link href="/">
+                        <Button type="submit" className={`${styles.btColor} w-100`}>
+                            Login
+                        </Button>
+                    </Link>
                 </div>
             </Form>
                 <Card.Text className="text-center mb-5">
-                    <a href="#" className="nav-link">Esqueci a senha</a>
+                    <Link href="/register">
+                        <a className="nav-link">Cadastro</a>
+                    </Link>
                 </Card.Text>
             </Card.Body>
         </Card>
+        </div>
     )
 }

@@ -20,6 +20,27 @@ export function QuotesPage(){
             <div className="row">
               <CardItemList/>
             </div>
+            <div className="row">
+              <CardItemList/>
+            </div>
+            <div className="row">
+              <CardItemList/>
+            </div>
+            <div className="row">
+              <CardItemList/>
+            </div>
+            <div className="row">
+              <CardItemList/>
+            </div>
+            <div className="row">
+              <CardItemList/>
+            </div>
+            <div className="row">
+              <CardItemList/>
+            </div>
+            <div className="row">
+              <CardItemList/>
+            </div>
 
             <footer className={styles.footerContainer}>                
                 <div className="row" style={{position: 'absolute'}}>
