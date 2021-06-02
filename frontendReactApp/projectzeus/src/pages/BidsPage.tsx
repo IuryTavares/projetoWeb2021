@@ -1,46 +1,48 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-import {CardItemList} from './views/CardItemList'
-import styles from '../styles/components/QuotesPage.module.css'
-import { PaginationElement } from './views/PaginationElement'
-import {CardItemListTitle} from './views/CardItemListTitle'
+import styles from '../styles/components/BidsPage.module.css'
+import { PaginationElement } from '../components/views/PaginationElement'
+import {BidsItemList} from '../components/BidsItemList'
+import { BidsItemListTitle } from '../components/BidsItemListTitle'
 
-export function QuotesPage(){
+
+export default function BidsPage(){
     return(
-        <div className="container-fluid">
+        <div className={`${styles.divCard} mb-2 px-0 mx-0`}>
             <div className="row">
                 <div className="col">
-                    <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Cotação</h5>
+                  <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Meus Bids</h5>
                 </div>
             </div>
 
             <div className="row">
-                <CardItemListTitle></CardItemListTitle>
+                <BidsItemListTitle></BidsItemListTitle>
             </div>
 
             <div className="row">
-              <CardItemList/>
+              <BidsItemList></BidsItemList>
             </div>
             <div className="row">
-              <CardItemList/>
+              <BidsItemList></BidsItemList>
             </div>
             <div className="row">
-              <CardItemList/>
+              <BidsItemList></BidsItemList>
             </div>
             <div className="row">
-              <CardItemList/>
+              <BidsItemList></BidsItemList>
             </div>
             <div className="row">
-              <CardItemList/>
+              <BidsItemList></BidsItemList>
             </div>
             <div className="row">
-              <CardItemList/>
+              <BidsItemList></BidsItemList>
             </div>
             <div className="row">
-              <CardItemList/>
+              <BidsItemList></BidsItemList>
             </div>
             <div className="row">
-              <CardItemList/>
+              <BidsItemList></BidsItemList>
             </div>
+
 
             <footer className={styles.footerContainer}>                
                 <div className="row" style={{position: 'absolute'}}>

@@ -1,46 +1,45 @@
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-import styles from '../styles/components/BidsPage.module.css'
-import { PaginationElement } from './views/PaginationElement'
-import { TransactionItemListTitle } from './TransactionItemListTitle'
-import { TransactionItemList } from './TransactionItemList'
+import {CardItemList} from '../components/views/CardItemList'
+import styles from '../styles/components/QuotesPage.module.css'
+import { PaginationElement } from '../components/views/PaginationElement'
+import {CardItemListTitle} from '../components/views/CardItemListTitle'
 
-
-export function TransactionPage(){
+export default function QuotesPage(){
     return(
-        <div className="container-fluid">
+        <div className={`${styles.divCard} mb-2 px-0 mx-0`}>
             <div className="row">
                 <div className="col">
-                    <span><b>Transações</b></span>
+                    <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Cotação</h5>
                 </div>
             </div>
 
             <div className="row">
-                <TransactionItemListTitle></TransactionItemListTitle>
+                <CardItemListTitle></CardItemListTitle>
             </div>
 
             <div className="row">
-                <TransactionItemList></TransactionItemList>
+              <CardItemList/>
             </div>
             <div className="row">
-                <TransactionItemList></TransactionItemList>
+              <CardItemList/>
             </div>
             <div className="row">
-                <TransactionItemList></TransactionItemList>
+              <CardItemList/>
             </div>
             <div className="row">
-                <TransactionItemList></TransactionItemList>
+              <CardItemList/>
             </div>
             <div className="row">
-                <TransactionItemList></TransactionItemList>
+              <CardItemList/>
             </div>
             <div className="row">
-                <TransactionItemList></TransactionItemList>
+              <CardItemList/>
             </div>
             <div className="row">
-                <TransactionItemList></TransactionItemList>
+              <CardItemList/>
             </div>
             <div className="row">
-                <TransactionItemList></TransactionItemList>
+              <CardItemList/>
             </div>
 
             <footer className={styles.footerContainer}>                

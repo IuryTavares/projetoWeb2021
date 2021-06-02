@@ -1,12 +1,12 @@
 import {Row, Col, Button, Modal, Form, ListGroup} from 'react-bootstrap'
 import styles from '../styles/components/MyProductsPage.module.css'
-import { CardProduct } from './views/CardProduct'
+import { CardProduct } from '../components/views/CardProduct'
 import {IoAddCircleSharp} from 'react-icons/io5'
 import {RiShoppingCart2Fill} from 'react-icons/ri'
 import {ImCancelCircle} from 'react-icons/im'
 import { useState } from 'react'
 
-export function MyProductsPage() {
+export default function MyProductsPage() {
     const [addProduct, setShowAddProduct] = useState(false);
     const handleCloseAddProduct = () => setShowAddProduct(false);
     const handleShowAddProduct = () => setShowAddProduct(true);

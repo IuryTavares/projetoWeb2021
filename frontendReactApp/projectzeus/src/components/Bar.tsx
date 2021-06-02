@@ -6,12 +6,10 @@ import {GiFruitBowl, GiReceiveMoney} from 'react-icons/gi'
 import {GoChecklist} from 'react-icons/go'
 import {FaUserCircle} from 'react-icons/fa'
 import {BsFillChatDotsFill} from 'react-icons/bs'
-import {QuotesPage} from '../components/QuotesPage'
 import {CardItemList} from './views/CardItemList'
 import {FiMenu} from 'react-icons/fi'
-import { BidsPage } from './BidsPage';
-import { TransactionPage } from './TransactionPage';
-import { MyProductsPage } from './MyProductsPage';
+import Link from 'next/link'
+import { Children } from 'react';
 
 export function Bar() {
     const navDropdownTitle = (
@@ -30,7 +28,7 @@ export function Bar() {
                     </a>
                     <ul className="nav nav-pills flex-sm-column" id="menu">
                         <li className="my-3">
-                            <a href="#" className={`px-0 ${styles.bgSelected} text-decoration-none` }>
+                            <a className={`px-0 ${styles.bgSelected} text-decoration-none` }>
                                 <svg width="0" height="0">
                                     <linearGradient id="blue-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
                                         <stop stopColor="#4b2ae9" offset="0%" />
@@ -38,25 +36,25 @@ export function Bar() {
                                     </linearGradient>
                                 </svg>
                                 <IoBagCheck size="1.5rem" style={{ fill: "url(#blue-gradient)"}} className="me-2"/>
-                                <span style={{fontWeight: 600}} className="d-none d-sm-inline ms-1">Cotações</span>
+                                <span style={{fontWeight: 600}} className="d-none d-sm-inline ms-1"><Link href="/QuotesPage">Cotações</Link></span>
                             </a>
                         </li>
                         <li className="mb-3">
-                            <a href="#" className="px-0 text-secondary text-decoration-none">
+                            <a  className="px-0 text-secondary text-decoration-none">
                                 <GiFruitBowl size="1.5rem" className="me-2"/>
-                                <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline">Meus Produtos</span> 
+                                <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline"><Link href="/MyProductsPage">Meus Produtos</Link></span> 
                             </a>
                         </li>
                         <li className="mb-3">
                             <a href="#" className="px-0 text-secondary text-decoration-none">
                                 <GiReceiveMoney size="1.5rem" className="me-2 fs-5 bi-speedometer2"/>
-                                <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline text-secondary">Meus Bid's</span>
+                                <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline text-secondary"><Link href="/BidsPage">Meus Bid's</Link></span>
                             </a>
                         </li>
                         <li className="mb-3">
                             <a href="#" className="px-0 text-secondary text-decoration-none">
                                 <GoChecklist size="1.5rem" className="me-2 fs-5 bi-speedometer2"/>
-                                <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline text-secondary">Transações</span>
+                                <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline text-secondary"><Link href="/TransactionPage">Transações</Link></span>
                             </a>
                         </li>
                     </ul>
@@ -106,13 +104,7 @@ export function Bar() {
                         </main>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <div className="w-100 pt-3">
-                            <TransactionPage/>
-                        </div>
-                    </Col>
-                </Row>
+                
             </Col>
         </Row>
     </div>
