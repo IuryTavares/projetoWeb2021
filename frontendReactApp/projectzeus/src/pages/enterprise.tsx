@@ -4,30 +4,62 @@ import styles from '../styles/components/Register.module.css'
 import {AiFillLeftCircle, AiFillCheckCircle} from 'react-icons/ai'
 import homeStyles from '../styles/pages/Home.module.css'
 import Link from 'next/link'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { registerEnterprise } from '../lib/register'
 
-export default function RegisterEnterprise() {
+const RegisterEnterprise = () => {
+    const [name, setName] = useState('')
+    const [cnpj, setCnpj] = useState('')
+    const [address, setAddress] = useState('')
+
+    const router = useRouter()
+
+    const handleSubmita = (event) => {
+        event.preventDefault() // pra nao recarregar a pagina
+
+        registerEnterprise(
+            name,
+            cnpj,
+            address
+        )
+
+        router.push({
+            pathname: '/login',
+        })
+    }
     return (
         <div className={homeStyles.container}>
         <Card className={`${styles.cardContainer} w-50`}>
             <Card.Header className="text-center ">Informações sobre a Empresa</Card.Header>
             <Card.Body className="pb-2">
-            <Form>
+            <Form onSubmit={handleSubmita}>
                 <Form.Row as={Row} className="mb-3">
                     <Form.Group as={Col}>
                         <Form.Label>Nome</Form.Label>
-                        <Form.Control type="text" placeholder="Nome Fantasia" />
+                        <Form.Control 
+                            type="text" 
+                            value={name}
+                            onChange={(e) => setName(e.target.value)} 
+                            placeholder="Nome Fantasia" />
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>CNPJ</Form.Label>
-                        <Form.Control type="number" placeholder="CNPF (Apenas números)" />
+                        <Form.Control 
+                            type="number" 
+                            value={cnpj}
+                            onChange={(e) => setCnpj(e.target.value)} 
+                            placeholder="CNPJ (Apenas números)" />
                     </Form.Group>
                 </Form.Row>
                 <Form.Group as={Col} className="mb-3">
                     <Form.Label>Endereço</Form.Label>
-                    <Form.Control type="text" placeholder="Endereço" />
+                    <Form.Control 
+                        type="text" 
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)} 
+                        placeholder="Endereço" />
                 </Form.Group>
-            </Form>
-            <Form>
                 <div className="text-center mb-3 mt-5">
                     <Row>
                         <svg width="0" height="0">
@@ -43,9 +75,9 @@ export default function RegisterEnterprise() {
                             </a></Link>
                         </Col>
                         <Col>
-                        <Link href="/login"><a>
-                            <AiFillCheckCircle size="3.5rem" style={{ fill: "url(#blue-gradient)"}}/>
-                        </a></Link>
+                            <button type="submit" className={styles.noStyle}>
+                                <AiFillCheckCircle size="3.5rem" style={{ fill: "url(#blue-gradient)"}}/>
+                            </button>
                         </Col>
                         
                     </Row>
@@ -63,3 +95,5 @@ export default function RegisterEnterprise() {
         </div>
     )
 }
+
+export default RegisterEnterprise

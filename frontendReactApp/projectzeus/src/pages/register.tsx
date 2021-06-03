@@ -30,7 +30,7 @@ const RegisterUser = () => {
         )
 
         router.push({
-            pathname: '/registerEnterprise',
+            pathname: '/enterprise',
         })
     }
 
@@ -120,7 +120,7 @@ const RegisterUser = () => {
                         </div>
                         <div className="row">
                             <div className="col text-center">
-                                <button type="submit" className={styles.noStyle}> 
+                                <button type="submit" className={styles.noStyle}>
                                     <div className="text-center mb-3 mt-5">
                                         <svg width="0" height="0">
                                             <linearGradient id="blue-gradient" x1="100%" y1="100%" x2="0%" y2="0%">

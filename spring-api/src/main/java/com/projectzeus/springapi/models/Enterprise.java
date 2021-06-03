@@ -2,8 +2,6 @@ package com.projectzeus.springapi.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -15,7 +13,9 @@ public class Enterprise implements Serializable {
     private long id;
     private String fantasyName;
     private String cnpj;
-    private String adress;
+    private String address;
+
+    public Enterprise() {}
 
     //private User represetative;
 
@@ -46,12 +46,10 @@ public class Enterprise implements Serializable {
         this.cnpj = cnpj;
     }
 
-    public String getAdress() {
-        return adress;
-    }
+    public String getAddress() { return address; }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<User> getUsers() {

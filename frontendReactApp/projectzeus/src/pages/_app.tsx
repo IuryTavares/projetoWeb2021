@@ -15,6 +15,7 @@ import Link from 'next/link'
 import { Router } from 'next/router'
 import Register from './register'
 import Login from './login'
+import RegisterEnterprise from './enterprise'
 
 
 function MyApp({ Component, pageProps, router }) {
@@ -29,6 +30,9 @@ function MyApp({ Component, pageProps, router }) {
     }
     if (router.pathname.startsWith('/login')) {
         return <Login/>
+    }
+    if (router.pathname.startsWith('/enterprise')) {
+        return <RegisterEnterprise/>
     }
   return ( 
     <div className="container-fluid overflow-hidden">
