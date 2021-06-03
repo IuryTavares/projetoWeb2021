@@ -13,7 +13,7 @@ public class Product implements Serializable {
     private long id;
     private String name;
     private String description;
-    private BigDecimal price;
+    private BigDecimal limitPrice;
     private BigDecimal quantity;
     private String brand;
 
@@ -41,12 +41,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getLimitPrice() {
+        return limitPrice;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setLimitPrice(BigDecimal limitPrice) {
+        this.limitPrice = limitPrice;
     }
 
     public BigDecimal getQuantity() {

@@ -1,73 +1,148 @@
-import {Row, Col, Card, Form} from 'react-bootstrap'
 import styles from '../styles/components/Register.module.css'
 import {AiFillRightCircle} from 'react-icons/ai'
 import homeStyles from '../styles/pages/Home.module.css'
 import Link from 'next/link'
+import { useState } from 'react'
+import {useRouter} from 'next/router'
+import { registerUser } from '../lib/register'
 
-export default function RegisterUser() {
+const RegisterUser = () => {
+    const [name, setName] = useState('')
+    const [birthDate, setBirthDate] = useState('')
+    const [email, setEmail] = useState('')
+    const [address, setAddress] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [cpf, setCpf] = useState('')
+
+    const router = useRouter()
+
+    const handleSubmit = (event) => {
+        event.preventDefault() // pra nao recarregar a pagina
+
+        registerUser(
+            name, 
+            birthDate, 
+            email, 
+            address, 
+            password, 
+            cpf
+        )
+
+        router.push({
+            pathname: '/registerEnterprise',
+        })
+    }
+
     return (
         <div className={homeStyles.container}>
-        <Card className={`${styles.cardContainer} w-50`}>
-            <Card.Header className="text-center ">Cadastro</Card.Header>
-            <Card.Body className="pb-2">
-            <Form>
-                <Form.Row as={Row} className="mb-3">
-                    <Form.Group as={Col}>
-                        <Form.Label>Nome</Form.Label>
-                        <Form.Control type="text" placeholder="Nome Completo" />
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                        <Form.Label>CPF</Form.Label>
-                        <Form.Control type="number" placeholder="CPF (Apenas números)" />
-                    </Form.Group>
-                </Form.Row>
-                <Form.Row as={Row} className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
-                        <Form.Label>Endereço</Form.Label>
-                        <Form.Control type="text" placeholder="Endereço" />
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                        <Form.Label>Data de Nascimento</Form.Label>
-                        <Form.Control type="date"/>
-                    </Form.Group>
-                </Form.Row>
-                <Form.Group as={Col} controlId="formGridEmail" className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Insira seu email" />
-                </Form.Group>
-                <Form.Row as={Row} className="mb-3">
-                    <Form.Group as={Col} controlId="formGridPassword">
-                        <Form.Label>Senha</Form.Label>
-                        <Form.Control type="password" placeholder="Senha contendo números e letras" />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridPassword">
-                        <Form.Label>Confirme sua Senha</Form.Label>
-                        <Form.Control type="password" placeholder="Repita a senha" />
-                    </Form.Group>
-                </Form.Row>
-            </Form>
-            <Form>
-                <Link href="/registerEnterprise"><a>
-                <div className="text-center mb-3 mt-5">
-                    
-                    <svg width="0" height="0">
-                        <linearGradient id="blue-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
-                            <stop stopColor="#4b2ae9" offset="0%" />
-                            <stop stopColor="#9e4ef5" offset="100%" />
-                        </linearGradient>
-                    </svg>
-                    <AiFillRightCircle size="3.5rem" style={{ fill: "url(#blue-gradient)"}}/>
-                    
+            <div className={`card ${styles.cardContainer} w-50`}>
+                <div className="card-header text-center">
+                    Cadastro
                 </div>
-                </a></Link>
-            </Form>
-                <Card.Text className="text-center">
-                <Link href="/login">
-                    <span>Já possui conta? <a href="#" className="nav-link p-0">Faça o login</a></span>
-                    </Link>
-                </Card.Text>
-            </Card.Body>
-        </Card>
+                <div className="card-body pb-2">
+                    <form onSubmit={handleSubmit}>
+                        <div className="row mb-3">
+                            <div className="col-md">
+                                <label className="col-form-label">Nome</label>
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    id="name" 
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder="Nome Completo" />
+                            </div>
+                            <div className="col-md">
+                                <label className="col-form-label">CPF</label>
+                                <input 
+                                    type="number" 
+                                    className="form-control" 
+                                    id="cpf" 
+                                    value={cpf}
+                                    onChange={(e) => setCpf(e.target.value)}
+                                    placeholder="CPF (Apenas números)" />
+                            </div>
+                        </div>
+                        <div className="row mb-3">
+                            <div className="col-md">
+                                <label className="col-form-label">Endereço</label>
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    id="adress" 
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    placeholder="Endereço" />
+                            </div>
+                            <div className="col-md">
+                                <label className="col-form-label">Data de Nascimento</label>
+                                <input 
+                                    type="date" 
+                                    className="form-control" 
+                                    id="date" 
+                                    value={birthDate}
+                                    onChange={(e) => setBirthDate(e.target.value)}
+                                    placeholder="CPF (Apenas números)"/>
+                            </div>
+                        </div>
+                        <div className="form-group mb-3">
+                            <label className="col-form-label">Email</label>
+                            <input 
+                                type="email" 
+                                className="form-control" 
+                                id="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)} 
+                                placeholder="Insira seu Email"/>
+                        </div>
+                        <div className="row mb-3">
+                            <div className="col-md">
+                                <label className="col-form-label">Senha</label>
+                                <input 
+                                    type="password" 
+                                    className="form-control" 
+                                    id="password" 
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="Senha contendo letras e números" />
+                            </div>
+                            <div className="col-md">
+                                <label className="col-form-label">Confirme sua Senha</label>
+                                <input 
+                                    type="password" 
+                                    className="form-control" 
+                                    id="confirmPassword" 
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    placeholder="Repita a senha"/>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col text-center">
+                                <button type="submit" className={styles.noStyle}> 
+                                    <div className="text-center mb-3 mt-5">
+                                        <svg width="0" height="0">
+                                            <linearGradient id="blue-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
+                                                <stop stopColor="#4b2ae9" offset="0%" />
+                                                <stop stopColor="#9e4ef5" offset="100%" />
+                                            </linearGradient>
+                                        </svg>
+                                        <AiFillRightCircle size="3.5rem" style={{ fill: "url(#blue-gradient)"}}/>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <p className="card-text text-center">
+                        <Link href="/login">
+                            <span>Já possui conta? <a href="#" className="nav-link p-0">Faça o login</a></span>
+                        </Link>
+                    </p>
+                </div>
+            </div>
         </div>
     )
 }
+
+export default RegisterUser

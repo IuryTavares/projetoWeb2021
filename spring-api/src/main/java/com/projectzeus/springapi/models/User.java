@@ -14,9 +14,22 @@ public class User implements Serializable {
     private String name;
     private Date birthDate;
     private String email;
-    private String adress;
+    private String address;
     private String password;
     private String cpf;
+
+    public User(String name) {
+        this.name = name;
+        birthDate = new Date(0);
+        email = new String();
+        address = new String();
+        password = new String();
+        cpf = new String();
+    }
+
+    public User() {
+
+    }
 
     public long getId() {
         return id;
@@ -46,16 +59,12 @@ public class User implements Serializable {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) { this.email = email; }
 
-    public String getAdress() {
-        return adress;
-    }
+    public String getAddress() { return address; }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPassword() {
