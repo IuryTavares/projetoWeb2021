@@ -1,10 +1,9 @@
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-import {Card, Modal, Row, Col, Button} from 'react-bootstrap'
+import {Card, Modal, Row, Col} from 'react-bootstrap'
 import styles from '../styles/components/TransactionItemList.module.css'
 import {AiOutlineEye} from 'react-icons/ai'
 import {GoKebabVertical} from 'react-icons/go'
 import { useState } from 'react'
-import { CardProduct } from './views/CardProduct'
+import { CardProduct } from './CardProduct'
 
 export function TransactionItemList(){
 

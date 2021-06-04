@@ -1,5 +1,5 @@
 import {Card} from 'react-bootstrap'
-import styles from '../../styles/components/views/CardItemListTitle.module.css'
+import styles from '../styles/components/CardItemListTitle.module.css'
 
 export function CardItemListTitle(){
     return(

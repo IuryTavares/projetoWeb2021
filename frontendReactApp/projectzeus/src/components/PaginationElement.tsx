@@ -1,4 +1,4 @@
-import styles from '../../styles/components/views/PaginationElement.module.css'
+import styles from '../styles/components/PaginationElement.module.css'
 
 export function PaginationElement() {
     return(

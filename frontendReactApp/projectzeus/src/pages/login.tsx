@@ -37,7 +37,7 @@ export default function Login() {
                     <Form.Check type="checkbox" label="Lembrar-me" />
                 </Form.Group>
                 <div className="text-center mb-3 mt-5">
-                    <Link href="/">
+                    <Link href="/quotations">
                         <Button type="submit" className={`${styles.btColor} w-100`}>
                             Login
                         </Button>

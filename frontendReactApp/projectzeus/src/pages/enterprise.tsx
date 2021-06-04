@@ -1,4 +1,3 @@
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import {Row, Col, Button, Card, Form} from 'react-bootstrap'
 import styles from '../styles/components/Register.module.css'
 import {AiFillLeftCircle, AiFillCheckCircle} from 'react-icons/ai'

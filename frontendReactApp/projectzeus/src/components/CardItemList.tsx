@@ -1,5 +1,5 @@
 import {Card, Row, Col, Modal, Button, ListGroup} from 'react-bootstrap'
-import styles from '../../styles/components/views/CardItemList.module.css'
+import styles from '../styles/components/CardItemList.module.css'
 import {AiOutlineEye, AiOutlineShoppingCart} from 'react-icons/ai'
 import {GoKebabVertical} from 'react-icons/go'
 import { useState } from 'react'

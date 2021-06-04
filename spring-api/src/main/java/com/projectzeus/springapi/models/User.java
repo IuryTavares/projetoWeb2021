@@ -3,6 +3,7 @@ package com.projectzeus.springapi.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="person")
@@ -18,18 +19,7 @@ public class User implements Serializable {
     private String password;
     private String cpf;
 
-    public User(String name) {
-        this.name = name;
-        birthDate = new Date(0);
-        email = new String();
-        address = new String();
-        password = new String();
-        cpf = new String();
-    }
-
-    public User() {
-
-    }
+    public User() {}
 
     public long getId() {
         return id;

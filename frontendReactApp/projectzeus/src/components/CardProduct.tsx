@@ -1,5 +1,5 @@
 import {Row, Col, Card, Form} from 'react-bootstrap'
-import styles from '../../styles/components/views/CardProduct.module.css'
+import styles from '../styles/components/CardProduct.module.css'
 import {AiFillEye} from 'react-icons/ai'
 import {IoFastFoodSharp} from 'react-icons/io5'
 

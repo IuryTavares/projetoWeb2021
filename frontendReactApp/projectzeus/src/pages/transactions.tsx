@@ -1,11 +1,10 @@
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import styles from '../styles/components/BidsPage.module.css'
-import { PaginationElement } from '../components/views/PaginationElement'
+import { PaginationElement } from '../components/PaginationElement'
 import { TransactionItemListTitle } from '../components/TransactionItemListTitle'
 import { TransactionItemList } from '../components/TransactionItemList'
 
 
-export default function TransactionPage(){
+export default function Transactions(){
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`}>
             <div className="row">

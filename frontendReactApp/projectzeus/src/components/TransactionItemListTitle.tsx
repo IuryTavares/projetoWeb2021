@@ -1,4 +1,3 @@
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import {Card} from 'react-bootstrap'
 import styles from '../styles/components/TransactionItemListTitle.module.css'
 

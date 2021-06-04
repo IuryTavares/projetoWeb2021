@@ -44,7 +44,7 @@ const RegisterUser = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="row mb-3">
                             <div className="col-md">
-                                <label className="col-form-label">Nome</label>
+                                <label className="col-form-label" htmlFor="name">Nome</label>
                                 <input 
                                     type="text" 
                                     className="form-control" 
