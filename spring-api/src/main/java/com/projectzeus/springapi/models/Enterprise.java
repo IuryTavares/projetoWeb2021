@@ -18,13 +18,10 @@ public class Enterprise implements Serializable {
     private List<Product> products;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Quotation> quotations;
-
-    public Enterprise() {}
-
-    //private User represetative;
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<User> users;
+
+    public Enterprise() {}
 
     public long getId() {
         return id;
