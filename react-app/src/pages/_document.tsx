@@ -1,8 +1,5 @@
 import Document, {Html, Head, Main, NextScript} from 'next/document';
 
-import {BrowserRouter as Router} from 'react-router-dom'
-import { Bar } from '../components/Bar';
-
 export default class MyDocument extends Document{
     render(){
         return(

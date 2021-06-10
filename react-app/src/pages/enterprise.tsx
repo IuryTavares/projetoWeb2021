@@ -28,7 +28,7 @@ const RegisterEnterprise = () => {
         })
     }
     return (
-        <div className={homeStyles.container}>
+        <div className={`${homeStyles.container} ${homeStyles.bgSelected}`}>
         <Card className={`${styles.cardContainer} w-50`}>
             <Card.Header className="text-center ">Informações sobre a Empresa</Card.Header>
             <Card.Body className="pb-2">

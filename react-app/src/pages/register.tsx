@@ -35,7 +35,7 @@ const RegisterUser = () => {
     }
 
     return (
-        <div className={homeStyles.container}>
+        <div className={`${homeStyles.container} ${homeStyles.bgSelected}`}>
             <div className={`card ${styles.cardContainer} w-50`}>
                 <div className="card-header text-center">
                     Cadastro

@@ -1,13 +1,13 @@
 import homeStyles from '../styles/pages/Home.module.css'
+import styles from '../styles/components/Login.module.css'
 import {Button, Card, Form, InputGroup, FormControl} from 'react-bootstrap'
 import {FaUserCircle} from 'react-icons/fa'
 import {RiLockPasswordFill} from 'react-icons/ri'
-import styles from '../styles/components/Login.module.css'
 import Link from 'next/link'
 
 export default function Login() {
     return (
-        <div className={homeStyles.container}>
+        <div className={`${homeStyles.container} ${homeStyles.bgSelected}`}>
         <Card style={{ width: '23rem'}} className={`${styles.cardContainer} mx-auto`}>
             <Card.Body className="py-4">
             <Form>
@@ -23,7 +23,7 @@ export default function Login() {
                         <FaUserCircle size="1.3rem" style={{ fill: "url(#blue-gradient)" }} />
                         </InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl id="inlineFormInputGroup" placeholder="Username" />
+                    <FormControl id="inlineFormInputGroup" placeholder="Email" />
                 </InputGroup>
                 <InputGroup className="mt-4">
                     <InputGroup.Prepend>
