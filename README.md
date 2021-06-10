@@ -14,10 +14,8 @@
 
 > npm add --dev typescript @types/react 
   or
-> yarn add --dev typescript @types/reac
+> yarn add --dev typescript @types/react
 
-> npm add react-router-dom
-> npm add @types/react-router-dom -D
 > npm install react-icons --save
 
 > npm run dev
