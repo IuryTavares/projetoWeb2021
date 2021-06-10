@@ -29,7 +29,6 @@ public class UserResource {
     @PutMapping("user/update")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         return new ResponseEntity<>(users.save(user), HttpStatus.OK);
-
     }
 
     @DeleteMapping("user/delete")
