@@ -4,7 +4,7 @@ import homeStyles from '../styles/pages/Home.module.css'
 import Link from 'next/link'
 import { useState } from 'react'
 import {useRouter} from 'next/router'
-import { registerUser } from '../lib/register'
+import { registerUser } from '../api/register'
 
 const RegisterUser = () => {
     const [name, setName] = useState('')

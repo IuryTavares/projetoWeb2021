@@ -5,9 +5,10 @@ import { IoAddCircleSharp } from 'react-icons/io5'
 import { RiShoppingCart2Fill } from 'react-icons/ri'
 import { ImCancelCircle } from 'react-icons/im'
 import { useState } from 'react'
-import { registerProduct} from '../lib/myProductsPage'
+import { registerProduct} from '../api/products'
+import { useEffect } from 'react'
 
-export default function Products() {
+const Products = () => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [limitPrice, setLimitPrice] = useState('')
@@ -34,6 +35,10 @@ export default function Products() {
     const handleCloseAddQuotes = () => setShowAddQuotes(false);
     const handleShowAddQuotes = () => setShowAddQuotes(true);
 
+    useEffect(() => {
+        console.log("msg")
+    })
+    
     return(
         <div>
             <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Meus Produtos</h5>
@@ -207,3 +212,5 @@ export default function Products() {
         
     )
 }
+
+export default Products

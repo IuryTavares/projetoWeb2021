@@ -5,7 +5,7 @@ import homeStyles from '../styles/pages/Home.module.css'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { registerEnterprise } from '../lib/register'
+import { registerEnterprise } from '../api/register'
 
 const RegisterEnterprise = () => {
     const [name, setName] = useState('')
