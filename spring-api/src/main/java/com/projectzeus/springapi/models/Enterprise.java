@@ -14,12 +14,6 @@ public class Enterprise implements Serializable {
     private String fantasyName;
     private String cnpj;
     private String address;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Quotation> quotations;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<User> users;
 
     public Enterprise() {}
 
@@ -53,19 +47,6 @@ public class Enterprise implements Serializable {
         this.address = address;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 
-    public List<Product> getProducts() { return products; }
-
-    public void setProducts(List<Product> products) { this.products = products; }
-
-    public List<Quotation> getQuotations() { return quotations; }
-
-    public void setQuotations(List<Quotation> quotations) { this.quotations = quotations; }
 }

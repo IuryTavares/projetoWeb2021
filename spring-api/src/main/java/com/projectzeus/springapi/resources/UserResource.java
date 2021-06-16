@@ -1,11 +1,15 @@
 package com.projectzeus.springapi.resources;
 
+import com.projectzeus.springapi.models.Enterprise;
 import com.projectzeus.springapi.models.User;
+import com.projectzeus.springapi.repository.EnterpriseRepository;
 import com.projectzeus.springapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.LinkedList;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -14,6 +18,9 @@ public class UserResource {
 
     @Autowired
     UserRepository users;
+
+    @Autowired
+    EnterpriseRepository enterprises;
 
     @GetMapping("/user/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") long id) {
