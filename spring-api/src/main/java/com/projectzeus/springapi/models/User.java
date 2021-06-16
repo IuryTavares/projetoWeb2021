@@ -12,12 +12,16 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+
+
     private String name;
     private Date birthDate;
     private String email;
     private String address;
     private String password;
     private String cpf;
+
 
     public User() {}
 

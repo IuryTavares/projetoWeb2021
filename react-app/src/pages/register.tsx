@@ -52,6 +52,7 @@ const RegisterUser = () => {
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     placeholder="Nome Completo" />
+                                   
                             </div>
                             <div className="col-md">
                                 <label className="col-form-label">CPF</label>

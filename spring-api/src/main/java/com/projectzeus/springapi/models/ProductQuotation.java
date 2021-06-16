@@ -5,17 +5,31 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "product")
-public class Product implements Serializable {
+@Table(name = "product_quotation")
+public class ProductQuotation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_quotation")
+    private Quotation quotation;
     private String name;
     private String description;
     private BigDecimal limitPrice;
     private BigDecimal quantity;
     private String brand;
+
+    public Quotation getQuotation() {
+        return quotation;
+    }
+
+    public void setQuotation(Quotation quotation) {
+        this.quotation = quotation;
+    }
 
     public long getId() {
         return id;

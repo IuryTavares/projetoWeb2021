@@ -2,10 +2,7 @@ package com.projectzeus.springapi.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "quotation")
@@ -14,13 +11,20 @@ public class Quotation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String name;
     private String description;
     private Date endDate;
     private Date startDate;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "id_enterprise")
+    private Enterprise Enterprise;
+
+
+    @OneToMany(mappedBy = "quotation", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductQuotation> productQuotations;
+
 
     public long getId() {
         return id;
@@ -62,11 +66,11 @@ public class Quotation implements Serializable {
         this.startDate = startDate;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<ProductQuotation> getProducts() {
+        return productQuotations;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProducts(List<ProductQuotation> productQuotations) {
+        this.productQuotations = productQuotations;
     }
 }
