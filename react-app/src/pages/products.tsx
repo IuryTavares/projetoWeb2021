@@ -4,11 +4,15 @@ import { CardProduct } from '../components/CardProduct'
 import { IoAddCircleSharp } from 'react-icons/io5'
 import { RiShoppingCart2Fill } from 'react-icons/ri'
 import { ImCancelCircle } from 'react-icons/im'
-import { useState } from 'react'
-import { registerProduct} from '../api/products'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { registerProduct, getAllProducts } from '../api/products'
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
-const Products = () => {
+type Props = {
+    items
+}
+
+const Products = ( { items }: Props) => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [limitPrice, setLimitPrice] = useState('')
@@ -35,10 +39,6 @@ const Products = () => {
     const handleCloseAddQuotes = () => setShowAddQuotes(false);
     const handleShowAddQuotes = () => setShowAddQuotes(true);
 
-    useEffect(() => {
-        console.log("msg")
-    })
-    
     return(
         <div>
             <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Meus Produtos</h5>
@@ -211,6 +211,12 @@ const Products = () => {
         </div>
         
     )
+}
+
+export const getStaticProps: GetServerSideProps = async () => {
+    const items = getAllProducts
+    console.log(items)
+    return { props: { items } }
 }
 
 export default Products

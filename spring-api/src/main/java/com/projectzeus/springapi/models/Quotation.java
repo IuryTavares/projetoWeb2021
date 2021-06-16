@@ -11,20 +11,15 @@ public class Quotation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     private String name;
     private String description;
     private Date endDate;
     private Date startDate;
-
     @ManyToOne
     @JoinColumn(name = "id_enterprise")
     private Enterprise Enterprise;
-
-
     @OneToMany(mappedBy = "quotation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductQuotation> productQuotations;
-
 
     public long getId() {
         return id;

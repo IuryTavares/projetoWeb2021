@@ -27,7 +27,7 @@ public class EnterpriseResource {
     }
 
     @PostMapping("/enterprise/create")
-    public ResponseEntity<String> createEnterprise(Enterprise enterprise) {
+    public ResponseEntity<String> createEnterprise(@RequestBody Enterprise enterprise) {
         enterprises.save(enterprise);
         return new ResponseEntity<>(HttpStatus.OK);
     }

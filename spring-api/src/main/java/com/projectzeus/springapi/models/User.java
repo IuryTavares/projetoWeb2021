@@ -12,9 +12,9 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "id_enterprise")
+    private Enterprise enterprise;
     private String name;
     private Date birthDate;
     private String email;
@@ -32,6 +32,10 @@ public class User implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
+    public Enterprise getEnterprise() { return enterprise; }
+
+    public void setEnterprise(Enterprise enterprise) { this.enterprise = enterprise; }
 
     public String getName() {
         return name;
