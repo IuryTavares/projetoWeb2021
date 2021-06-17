@@ -3,7 +3,7 @@ import styles from '../styles/components/CardItemList.module.css'
 import {AiOutlineEye, AiOutlineShoppingCart} from 'react-icons/ai'
 import {GoKebabVertical} from 'react-icons/go'
 import { useState } from 'react'
-import { CardProduct } from './CardProduct'
+import CardProduct from './CardProduct'
 
 
 export function CardItemList(){
@@ -134,9 +134,6 @@ export function CardItemList(){
                                                 </Button>
                                             </Modal.Footer>
                                         </Modal>
-                                    </div>
-                                    <div className="col">
-                                    <GoKebabVertical size="1.5rem"></GoKebabVertical>
                                     </div>
                                 </div>
                             </div>

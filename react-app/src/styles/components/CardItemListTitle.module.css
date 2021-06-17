@@ -1,14 +1,14 @@
 .cardContainer{
     width: 97.5%;
     height: 40px;
-  
-    border-radius: 5px;
-    padding: 1.5rem 2rem;
+    
+    padding: 1.5rem 2rem 1rem 2rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    background-color: transparent;
     color: var(--gray);
     border: 0;   
 }

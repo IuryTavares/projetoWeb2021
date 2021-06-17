@@ -19,33 +19,12 @@ export default function Quotations(){
             <div className="row">
               <CardItemList/>
             </div>
-            <div className="row">
-              <CardItemList/>
-            </div>
-            <div className="row">
-              <CardItemList/>
-            </div>
-            <div className="row">
-              <CardItemList/>
-            </div>
-            <div className="row">
-              <CardItemList/>
-            </div>
-            <div className="row">
-              <CardItemList/>
-            </div>
-            <div className="row">
-              <CardItemList/>
-            </div>
-            <div className="row">
-              <CardItemList/>
-            </div>
 
-            <footer className={styles.footerContainer}>                
+            {/*<footer className={styles.footerContainer}>                
                 <div className="row" style={{position: 'absolute'}}>
                     <PaginationElement></PaginationElement>
                 </div>
-            </footer>
+            </footer>*/}
         </div>
     );
 }

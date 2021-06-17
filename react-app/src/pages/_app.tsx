@@ -108,7 +108,7 @@ function MyApp({ Component, pageProps, router }) {
                                         </a>
                                     </Link>
                                 </li>
-                                <li className="mb-3">
+                                {/*<li className="mb-3">
                                     <Link href="/bids">
                                         <a href="#" className="px-0 text-secondary text-decoration-none">
                                             <GiReceiveMoney size="1.5rem" className="me-2 fs-5 bi-speedometer2"/>
@@ -127,13 +127,13 @@ function MyApp({ Component, pageProps, router }) {
                                             </span>
                                         </a>
                                     </Link>
-                                </li>
+                                </li>*/}
                             </ul>
                         </div>
                     </div>
-                    <div className={`${homeStyles.bgSelected} col`}>
+                    <div className={`${homeStyles.bgSelected} vh-100 col`}>
                         <div className="mb-2 px-0 mx-0">
-                                <Component {...pageProps} />  
+                            <Component {...pageProps} />  
                         </div>
                     </div>
                 </div>

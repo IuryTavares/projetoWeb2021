@@ -1,18 +1,23 @@
 import {Modal} from 'react-bootstrap'
 import styles from '../styles/components/MyProductsPage.module.css'
-import { CardProduct } from '../components/CardProduct'
+import CardProduct from '../components/CardProduct'
 import { IoAddCircleSharp } from 'react-icons/io5'
 import { RiShoppingCart2Fill } from 'react-icons/ri'
 import { ImCancelCircle } from 'react-icons/im'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { registerProduct, getAllProducts } from '../api/products'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { Product } from '../interfaces/Product'
+import ItemProductModal from '../components/ItemProductModal'
+import { registerCotation } from '../api/cotationService'
 
 type Props = {
-    items
+    items: Product[]
 }
 
 const Products = ( { items }: Props) => {
+
+    // Add product
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [limitPrice, setLimitPrice] = useState('')
@@ -20,7 +25,7 @@ const Products = ( { items }: Props) => {
     const [brand, setBrand] = useState('')
 
     const handleSubmitProduct = (event) => {
-        event.preventDefault()
+        //event.preventDefault()
 
         registerProduct(
             name, 
@@ -31,6 +36,36 @@ const Products = ( { items }: Props) => {
         )
     }
 
+    // Add Cotations
+    const [initDate, setInitDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+    const [descriptionCotation, setDescripitionCotation] = useState('')
+
+    const handleInputChange = (event) => {
+        items.find((item) => {
+            if(item.id == event.target.value) return item
+        }).checkCotation = event.target.checked
+    }
+
+    const handleSubmitCotation = (event) => {
+        event.preventDefault()
+        let productsToAdd = items.filter((item) => {
+            if(item.checkCotation) return item
+        }).map((i) => { return i.id })
+        
+        registerCotation(
+            initDate, 
+            endDate, 
+            descriptionCotation, 
+            productsToAdd
+        )
+
+        items.map((item) => {
+            item.checkCotation = false
+        })
+    }
+
+    // Modals
     const [addProduct, setShowAddProduct] = useState(false);
     const handleCloseAddProduct = () => setShowAddProduct(false);
     const handleShowAddProduct = () => setShowAddProduct(true);
@@ -43,15 +78,11 @@ const Products = ( { items }: Props) => {
         <div>
             <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Meus Produtos</h5>
             <div className="row mb-2">
-                <div className="col">
-                    <CardProduct/>
-                </div>
-                <div className="col">
-                    <CardProduct/>
-                </div>
-                <div className="col">
-                    <CardProduct/>
-                </div>
+                {items.map((item)=>
+                    <div className="col-lg-4 col-sm-6" key={item.id}>
+                        <CardProduct data={ item }/>
+                    </div>
+                )}
             </div>
 
             {/**
@@ -75,24 +106,40 @@ const Products = ( { items }: Props) => {
                             <Modal.Header className={styles.shadowModalHeader} closeButton>
                                 <Modal.Title className={styles.title}>Criar Quotação</Modal.Title>
                             </Modal.Header>
-                            <Modal.Body className={styles.bgModal}>
-                            <form>
+                            <form onSubmit={handleSubmitCotation}>
+                                <Modal.Body className={styles.bgModal}>
+                            
                                 <div className="row">
                                     <div className="col">
                                         <div className="row mb-sm-3">
                                             <div className="col">
-                                                <input className="form-control" type="date" placeholder="Data de Início" />
+                                                <input 
+                                                    className="form-control" 
+                                                    type="date" 
+                                                    value={initDate}
+                                                    onChange={(e) => setInitDate(e.target.value)}
+                                                    placeholder="Data de Início" />
                                             </div>
                                         </div>
                                         <div className="row mb-sm-3">
                                             <div className="col">
-                                                <input className="form-control" type="date" placeholder="Data do Fim" />
+                                                <input 
+                                                    className="form-control" 
+                                                    type="date" 
+                                                    value={endDate}
+                                                    onChange={(e) => setEndDate(e.target.value)}
+                                                    placeholder="Data do Fim" />
                                             </div>
                                         </div>
                                         <div className="row mb-sm-3">
                                             <div className="col">
                                                 <div className="form-group">
-                                                    <textarea className="form-control" rows={3} placeholder="Descrição"></textarea>
+                                                    <textarea 
+                                                        className="form-control" 
+                                                        rows={3} 
+                                                        value={descriptionCotation}
+                                                        onChange={(e) => setDescripitionCotation(e.target.value)}
+                                                        placeholder="Descrição"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,35 +148,45 @@ const Products = ( { items }: Props) => {
                                         <div className="row mb-sm-3">
                                             <div className="col">
                                                 <ul className="list-group">
-                                                    <li className="list-group-item">
-                                                        <div className="form-group row">
-                                                            <div className="col-sm-6">
-                                                                <label>
-                                                                    Castanha do Pará
-                                                                </label>
+                                                    {items.map((item)=>
+                                                        <li className="list-group-item" key={item.id}>
+                                                            <div className="form-group row">
+                                                                <div className="col-sm-7">
+                                                                    <label>
+                                                                        {item.name}
+                                                                    </label>
+                                                                </div>
+                                                                <div className="col">
+                                                                    <label>
+                                                                        {item.quantity} unid.
+                                                                    </label>
+                                                                </div>
+                                                                <div className="col-sm-1">
+                                                                    <input 
+                                                                        className="form-check-input" 
+                                                                        type="checkbox" 
+                                                                        value={item.id} 
+                                                                        onChange={handleInputChange}/>
+                                                                </div>
                                                             </div>
-                                                            <div className="col">
-                                                                <input className="form-control" type="number" placeholder="Quant." />
-                                                            </div>
-                                                            <div className="col-sm-1">
-                                                                <a href="#">
-                                                                    <ImCancelCircle className="mt-2" color="red"/>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                        </li>
+                                                    )}
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <button 
+                                        type="submit" 
+                                        className={`${styles.btColor} btn`} 
+                                        onClick={handleCloseAddQuotes}>
+                                        Adicionar
+                                    </button>
+                                </Modal.Footer>
                             </form>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <button className={`${styles.btColor} btn`} onClick={handleCloseAddQuotes}>
-                                    Adicionar
-                                </button>
-                            </Modal.Footer>
+                            
                         </Modal>
                     </div>
                 </div>
@@ -203,7 +260,6 @@ const Products = ( { items }: Props) => {
                                 </Modal.Footer>
                             </form>
                             </Modal.Body>
-                            
                         </Modal>
                     </div>
                 </div>
@@ -214,9 +270,8 @@ const Products = ( { items }: Props) => {
 }
 
 export const getStaticProps: GetServerSideProps = async () => {
-    const items = getAllProducts
-    console.log(items)
-    return { props: { items } }
+    const items: Product[] = await getAllProducts() ?? null
+    return { props: { items} }
 }
 
 export default Products
