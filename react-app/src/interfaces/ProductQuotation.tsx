@@ -1,12 +1,10 @@
 import { Enterprise } from "./Enterprise";
 
-export type Product = {
+export type ProductQuotation = {
     id,
-    enterprise: Enterprise,
     name, 
     description, 
     limitPrice, 
     quantity, 
-    brand,
-    checkCotation: false
+    brand
 }

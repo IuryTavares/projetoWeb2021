@@ -20,6 +20,8 @@ public class Product implements Serializable {
     private BigDecimal quantity;
     private String brand;
 
+    public Product() {}
+
     public long getId() {
         return id;
     }

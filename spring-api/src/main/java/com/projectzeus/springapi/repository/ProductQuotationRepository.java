@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProductQuotationRepository extends JpaRepository<ProductQuotation, Long> {
     List<ProductQuotation> findProductQuotationByIdIn(List<Long> ids);
     ProductQuotation findById(long id);
+    List<ProductQuotation> findProductQuotationByQuotationId(Long id);
 }

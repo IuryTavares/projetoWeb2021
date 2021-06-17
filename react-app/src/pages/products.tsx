@@ -5,7 +5,7 @@ import { IoAddCircleSharp } from 'react-icons/io5'
 import { RiShoppingCart2Fill } from 'react-icons/ri'
 import { ImCancelCircle } from 'react-icons/im'
 import { useState } from 'react'
-import { registerProduct, getAllProducts } from '../api/products'
+import { registerProduct, getAllProducts } from '../api/productsService'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { Product } from '../interfaces/Product'
 import ItemProductModal from '../components/ItemProductModal'
@@ -25,7 +25,7 @@ const Products = ( { items }: Props) => {
     const [brand, setBrand] = useState('')
 
     const handleSubmitProduct = (event) => {
-        //event.preventDefault()
+        event.preventDefault()
 
         registerProduct(
             name, 
@@ -271,7 +271,7 @@ const Products = ( { items }: Props) => {
 
 export const getStaticProps: GetServerSideProps = async () => {
     const items: Product[] = await getAllProducts() ?? null
-    return { props: { items} }
+    return { props: { items } }
 }
 
 export default Products

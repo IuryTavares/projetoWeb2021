@@ -4,9 +4,16 @@ import {AiOutlineEye, AiOutlineShoppingCart} from 'react-icons/ai'
 import {GoKebabVertical} from 'react-icons/go'
 import { useState } from 'react'
 import CardProduct from './CardProduct'
+import { Cotation } from '../interfaces/cotation'
+import { getAllProductsCotations } from '../api/cotationService'
+import { useEffect } from 'react'
+import { ProductQuotation } from '../interfaces/ProductQuotation'
 
+type Props = {
+    data: Cotation
+}
 
-export function CardItemList(){
+export function CardItemList({ data }: Props){
 
     const [details, setShowDetails] = useState(false);
     const handleCloseDetails = () => setShowDetails(false);
@@ -27,16 +34,16 @@ export function CardItemList(){
                     <div className="container-fluid">
                         <div className="row align-items-center">
                             <div className="col">
-                                Cotação
+                                { data.id }
                             </div>
                             <div className="col d-none d-xl-block" >
-                                Empresa
+                                { data.enterprise.fantasyName }
                             </div>
                             <div className="col d-none d-sm-block">
-                                02/07 - 05/07
+                                { data.startDate.substring(0 , 10)} - { data.endDate.substring(0 , 10) }
                             </div>
                             <div className="col d-none d-xl-block">
-                                Uf
+                                PE
                             </div>
                             <div className="col ">
                                 <div className="row align-items-center">
@@ -51,35 +58,21 @@ export function CardItemList(){
                                             <Modal.Body className={styles.bgModal}>
                                                 <Row>
                                                     <Col>
-                                                        <label className="mb-1">Cotação: <span className="text-secondary">00001</span></label>
-                                                        <label className="mb-1">Empresa: <span className="text-secondary">Empresa XXXX</span></label>
-                                                        <label className="mb-1">Data de Início: <span className="text-secondary">02/07/2021</span></label>
-                                                        <label className="mb-1">Data de Término: <span className="text-secondary">05/07/2021</span></label>
+                                                        <label className="mb-1">Cotação: <span className="text-secondary">{ data.id }</span></label>
+                                                        <label className="mb-1">Empresa: <span className="text-secondary">{ data.enterprise.fantasyName }</span></label>
+                                                        <label className="mb-1">Data de Início: <span className="text-secondary">{ data.startDate.substring(0 , 10) }</span></label>
+                                                        <label className="mb-1">Data de Término: <span className="text-secondary">{ data.endDate.substring(0 , 10) }</span></label>
                                                         <label className="mb-1">UF: <span className="text-secondary">Pernambuco</span></label>
                                                         <label className="mb-1">
                                                             Descrição: 
                                                             <span className="mb-2 text-secondary">
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ante massa, pellentesque nec lacus vel, tempus volutpat turpis. Nam eros nibh, semper vel velit ut, venenatis hendrerit sapien. Ut sagittis placerat magna, sit amet venenatis nunc hendrerit vel. Nullam imperdiet urna hendrerit neque dictum, et maximus ipsum tincidunt. Nunc imperdiet, eros eget venenatis finibus, justo tellus finibus neque, ut vehicula dolor dui in sapien.
+                                                                { data.description }
                                                             </span>
                                                         </label>
                                                     </Col>
                                                     <Col>
                                                     <ListGroup>
-                                                        <ListGroup.Item>
-                                                            Castanha <span className="text-end"> 100</span> 
-                                                        </ListGroup.Item>
-                                                        <ListGroup.Item>
-                                                            Castanha <span className="text-end"> 100</span> 
-                                                        </ListGroup.Item>
-                                                        <ListGroup.Item>
-                                                            Castanha <span className="text-end"> 100</span> 
-                                                        </ListGroup.Item>
-                                                        <ListGroup.Item>
-                                                            Castanha <span className="text-end"> 100</span> 
-                                                        </ListGroup.Item>
-                                                        <ListGroup.Item>
-                                                            Castanha <span className="text-end"> 100</span> 
-                                                        </ListGroup.Item>
+                                                        { }
                                                     </ListGroup>
                                                     </Col>
                                                 </Row>
@@ -97,34 +90,34 @@ export function CardItemList(){
                                             <Modal.Body className={styles.bgModal}>
                                                 <Row className="mb-1">
                                                     <Col>
-                                                        <CardProduct/>
+                                                        
                                                     </Col>
                                                     <Col>
-                                                        <CardProduct/>
-                                                    </Col>
-                                                </Row>
-                                                <Row className="mb-1">
-                                                    <Col>
-                                                        <CardProduct/>
-                                                    </Col>
-                                                    <Col>
-                                                        <CardProduct/>
+                                                        
                                                     </Col>
                                                 </Row>
                                                 <Row className="mb-1">
                                                     <Col>
-                                                        <CardProduct/>
+                                                        
                                                     </Col>
                                                     <Col>
-                                                        <CardProduct/>
+                                                        
                                                     </Col>
                                                 </Row>
                                                 <Row className="mb-1">
                                                     <Col>
-                                                        <CardProduct/>
+                                                        
                                                     </Col>
                                                     <Col>
-                                                        <CardProduct/>
+                                                        
+                                                    </Col>
+                                                </Row>
+                                                <Row className="mb-1">
+                                                    <Col>
+                                                        
+                                                    </Col>
+                                                    <Col>
+                                                        
                                                     </Col>
                                                 </Row>
                                             </Modal.Body>

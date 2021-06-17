@@ -1,9 +1,13 @@
 package com.projectzeus.springapi.resources;
 
+import com.projectzeus.springapi.DTO.QuotationDTO;
+import com.projectzeus.springapi.models.Enterprise;
+import com.projectzeus.springapi.models.Product;
 import com.projectzeus.springapi.models.ProductQuotation;
 import com.projectzeus.springapi.models.Quotation;
 import com.projectzeus.springapi.repository.EnterpriseRepository;
 import com.projectzeus.springapi.repository.ProductQuotationRepository;
+import com.projectzeus.springapi.repository.ProductRepository;
 import com.projectzeus.springapi.repository.QuotationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -21,7 +26,9 @@ public class QuotationResource {
     @Autowired
     QuotationRepository quotations;
     @Autowired
-    ProductQuotationRepository products;
+    ProductRepository products;
+    @Autowired
+    ProductQuotationRepository productsQuotation;
     @Autowired
     EnterpriseRepository enterprises;
 
@@ -30,49 +37,44 @@ public class QuotationResource {
         return new ResponseEntity(quotations.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/quotation/create")
-    public ResponseEntity<String> createQuotation(Quotation quotation, @RequestBody() List<Long> ids, String cnpj) {
-        System.out.println(ids);
+    @GetMapping("/quotations")
+    public ResponseEntity<List<Quotation>> getAll() {
+        return new ResponseEntity<>(quotations.findAll(), HttpStatus.OK);
+    }
 
-        //procurar o produto
-        var productsToAdd = products.findProductQuotationByIdIn(ids);
+    @PostMapping("/quotation/create/{cnpj}")
+    public ResponseEntity<String> createQuotation(@RequestBody() QuotationDTO quotationDTO, @PathVariable("cnpj") String cnpj) {
+        List<Long> ids = quotationDTO.getIds();
+        Quotation quotation = quotationDTO.getQuotation();
 
+        Enterprise loggedEnterprise = enterprises.findOneByCnpj(cnpj);
+        if (loggedEnterprise == null)
+            return new ResponseEntity("Empresa não cadastrada", HttpStatus.BAD_REQUEST);
 
-        var logedEnterprise = enterprises.findOneByCnpj(cnpj);
-        if(productsToAdd.size() != 0) {
-//            if(quotation.getProducts() == null) {
-//                quotation.setProducts(new ArrayList<ProductQuotation>());
-//            }
-//            quotation.getProducts().addAll(val);
+        quotation.setEnterprise(loggedEnterprise);
 
-        } else {
-            System.out.println("deu ruim");
+        List<Product> productsToAdd = products.findProductByIdIn(ids);
+        if (productsToAdd.size() == 0) {
+            return new ResponseEntity("Sem produtos para adicionar", HttpStatus.BAD_REQUEST);
         }
-
-        //transação
-
-
-        //regras de negocios
-
-
-        //salvar
         quotations.save(quotation);
-
-
-        for (var product: productsToAdd) {
-
-            //regras de negocios
-
-
-            //salvar
-            product.setQuotation(quotation);
-
-
-            //se der erro rollback
-
+        List<ProductQuotation> productsQuotationsToAdd = new ArrayList<>();
+        for (Product product : productsToAdd) {
+            if (product != null) {
+                ProductQuotation productQuotation = new ProductQuotation(
+                        quotation,
+                        product.getName(),
+                        product.getDescription(),
+                        product.getLimitPrice(),
+                        product.getQuantity(),
+                        product.getBrand()
+                );
+                productsQuotation.save(productQuotation);
+                productsQuotationsToAdd.add(productQuotation);
+            }
         }
-
-
+        quotation.setProductsQuotations(productsQuotationsToAdd);
+        quotations.save(quotation);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

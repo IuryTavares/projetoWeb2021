@@ -61,11 +61,15 @@ public class Quotation implements Serializable {
         this.startDate = startDate;
     }
 
-    public List<ProductQuotation> getProducts() {
+    public Enterprise getEnterprise() { return Enterprise; }
+
+    public void setEnterprise(Enterprise enterprise) { Enterprise = enterprise; }
+
+    public List<ProductQuotation> getProductsQuotations() {
         return productQuotations;
     }
 
-    public void setProducts(List<ProductQuotation> productQuotations) {
+    public void setProductsQuotations(List<ProductQuotation> productQuotations) {
         this.productQuotations = productQuotations;
     }
 }
