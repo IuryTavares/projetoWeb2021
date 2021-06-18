@@ -12,6 +12,8 @@ import Link from 'next/link'
 import Register from './register'
 import Login from './login'
 import RegisterEnterprise from './enterprise'
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps, router }) {
 
@@ -24,6 +26,26 @@ function MyApp({ Component, pageProps, router }) {
     if (router.pathname.startsWith('/enterprise')) {
         return <RegisterEnterprise/>
     }
+
+    const [selected1, setSelected1] = useState('')
+    const [selected2, setSelected2] = useState('')
+    const [selecteda, setSelecteda] = useState('')
+    const [selectedb, setSelectedb] = useState('')
+
+    useEffect(() => {
+        if (router.pathname.startsWith('/quotations')) {
+           setSelected1("url(#blue-gradient)")
+           setSelected2("#6c757d")
+           setSelecteda("#9e4ef5")
+           setSelectedb("#6c757d")
+        }
+        if (router.pathname.startsWith('/products')) {
+            setSelected2("url(#blue-gradient)")
+            setSelected1("#6c757d")
+            setSelectedb("#9e4ef5")
+            setSelecteda("#6c757d")
+        }
+    })
 
     return ( 
         <div>
@@ -84,15 +106,15 @@ function MyApp({ Component, pageProps, router }) {
                             <ul className="nav nav-pills flex-sm-column" id="menu">
                                 <li className="my-3">
                                     <Link href="/quotations">
-                                        <a className={`px-0 ${styles.bgSelected} text-decoration-none` }>
+                                        <a className={ `px-0 text-secondary text-decoration-none` }>
                                             <svg width="0" height="0">
                                                 <linearGradient id="blue-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
                                                     <stop stopColor="#4b2ae9" offset="0%" />
                                                     <stop stopColor="#9e4ef5" offset="100%" />
                                                 </linearGradient>
                                             </svg>
-                                            <IoBagCheck size="1.5rem" style={{ fill: "url(#blue-gradient)"}} className="me-2"/>
-                                            <span style={{fontWeight: 600}} className="d-none d-sm-inline ms-1">
+                                            <IoBagCheck size="1.5rem" style={{ fill: selected1}} className="me-2"/>
+                                            <span style={{fontWeight: 600, color: selecteda}} className="d-none d-sm-inline ms-1">
                                                 Cotações
                                             </span>
                                         </a>
@@ -100,9 +122,9 @@ function MyApp({ Component, pageProps, router }) {
                                 </li>
                                 <li className="mb-3">
                                     <Link href="/products">
-                                        <a  className="px-0 text-secondary text-decoration-none">
-                                            <GiFruitBowl size="1.5rem" className="me-2"/>
-                                            <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline">
+                                        <a className="px-0 text-secondary text-decoration-none">
+                                            <GiFruitBowl size="1.5rem" style={{ fill: selected2}} className="me-2"/>
+                                            <span style={{fontWeight: 600, color: selectedb}} className="ms-1 d-none d-sm-inline">
                                                 Meus Produtos
                                             </span> 
                                         </a>
