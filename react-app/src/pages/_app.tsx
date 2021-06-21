@@ -1,19 +1,18 @@
 import '../styles/globals.css'
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css'
 import styles from '../styles/components/Bar.module.css'
-import homeStyles from '../styles//pages/Home.module.css'
-import {IoBagCheck} from 'react-icons/io5';
-import {GiFruitBowl, GiReceiveMoney} from 'react-icons/gi'
-import {GoChecklist} from 'react-icons/go'
-import {FaUserCircle} from 'react-icons/fa'
-import {BsFillChatDotsFill} from 'react-icons/bs'
-import {FiMenu} from 'react-icons/fi'
+import homeStyles from '../styles/pages/Home.module.css'
+import { IoBagCheck } from 'react-icons/io5';
+import { GiFruitBowl, GiReceiveMoney } from 'react-icons/gi'
+import { GoChecklist } from 'react-icons/go'
+import { FaUserCircle } from 'react-icons/fa'
+import { BsFillChatDotsFill } from 'react-icons/bs'
+import { FiMenu } from 'react-icons/fi'
 import Link from 'next/link'
 import Register from './register'
 import Login from './login'
 import RegisterEnterprise from './enterprise'
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function MyApp({ Component, pageProps, router }) {
 

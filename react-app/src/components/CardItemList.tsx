@@ -1,13 +1,11 @@
 import {Card, Row, Col, Modal, Button, ListGroup} from 'react-bootstrap'
 import styles from '../styles/components/CardItemList.module.css'
 import {AiOutlineEye, AiOutlineShoppingCart} from 'react-icons/ai'
-import {GoKebabVertical} from 'react-icons/go'
 import { useState } from 'react'
+import { Cotation } from '../interfaces/Cotation'
 import CardProduct from './CardProduct'
-import { Cotation } from '../interfaces/cotation'
-import { getAllProductsCotations } from '../api/cotationService'
-import { useEffect } from 'react'
 import { ProductQuotation } from '../interfaces/ProductQuotation'
+import { Product } from '../interfaces/Product'
 
 type Props = {
     data: Cotation
@@ -71,9 +69,13 @@ export function CardItemList({ data }: Props){
                                                         </label>
                                                     </Col>
                                                     <Col>
-                                                    <ListGroup>
-                                                        { }
-                                                    </ListGroup>
+                                                        <ul className="list-group">
+                                                            {data.productsQuotations.map((item)=>
+                                                                <li className="list-group-item" key={item.id}>
+                                                                    {item.name}: <span className="text-end"> {item.quantity} un. </span> 
+                                                                </li>
+                                                            )}
+                                                        </ul>
                                                     </Col>
                                                 </Row>
                                             </Modal.Body>
@@ -88,38 +90,13 @@ export function CardItemList({ data }: Props){
                                                 <Modal.Title className={styles.title}>Ofertar</Modal.Title>
                                             </Modal.Header>
                                             <Modal.Body className={styles.bgModal}>
-                                                <Row className="mb-1">
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                </Row>
-                                                <Row className="mb-1">
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                </Row>
-                                                <Row className="mb-1">
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                </Row>
-                                                <Row className="mb-1">
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                </Row>
+                                                <div className="row mb-1">
+                                                    {data.productsQuotations.map((item) => 
+                                                        <div className="col-6">
+                                                            <CardProduct data={ item as Product } />
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </Modal.Body>
                                             <Modal.Footer>
                                                 <Button className={styles.btColor} onClick={handleCloseSell}>

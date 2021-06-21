@@ -2,7 +2,7 @@ import {CardItemList} from '../components/CardItemList'
 import styles from '../styles/components/QuotesPage.module.css'
 import { PaginationElement } from '../components/PaginationElement'
 import {CardItemListTitle} from '../components/CardItemListTitle'
-import { Cotation } from '../interfaces/cotation'
+import { Cotation } from '../interfaces/Cotation'
 import { GetServerSideProps } from 'next'
 import { getAllCotations } from '../api/cotationService'
 
@@ -26,8 +26,6 @@ const Quotations = ({ items }: Props) => {
                     <CardItemList data={ item }/>
                 </div>
             )}
-
-            
 
             {/*<footer className={styles.footerContainer}>                
                 <div className="row" style={{position: 'absolute'}}>
