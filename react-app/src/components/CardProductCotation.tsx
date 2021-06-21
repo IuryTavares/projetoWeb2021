@@ -13,7 +13,6 @@ type Props = {
 const CardProductCotation = ({ data }: Props) => {
     return (
         <Card className={`${styles.cardContainer} pb-0 mb-2`}>
-            sad
             <Card.Body className="pb-2">
                <Row>
                    <Col xs="8">

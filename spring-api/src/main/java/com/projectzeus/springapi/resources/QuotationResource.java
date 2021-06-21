@@ -55,6 +55,7 @@ public class QuotationResource {
         if (productsToAdd.size() == 0) {
             return new ResponseEntity("Sem produtos para adicionar", HttpStatus.BAD_REQUEST);
         }
+        quotation.setOpen(true);
         quotations.save(quotation);
         List<ProductQuotation> productsQuotationsToAdd = new ArrayList<>();
         for (Product product : productsToAdd) {

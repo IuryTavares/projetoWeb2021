@@ -28,21 +28,41 @@ function MyApp({ Component, pageProps, router }) {
 
     const [selected1, setSelected1] = useState('')
     const [selected2, setSelected2] = useState('')
+    const [selected3, setSelected3] = useState('')
+    const [selectedTransactionIcon, setSelectedTransactionIcon] = useState('')
+
     const [selecteda, setSelecteda] = useState('')
     const [selectedb, setSelectedb] = useState('')
+    const [selectedc, setSelectedc] = useState('')
+    const [selectedTransaction, setSelectedTransaction] = useState('')
 
     useEffect(() => {
         if (router.pathname.startsWith('/quotations')) {
            setSelected1("url(#blue-gradient)")
            setSelected2("#6c757d")
+           setSelected3("#6c757d")
+           
            setSelecteda("#9e4ef5")
            setSelectedb("#6c757d")
+           setSelectedc("#6c757d")
         }
         if (router.pathname.startsWith('/products')) {
             setSelected2("url(#blue-gradient)")
             setSelected1("#6c757d")
+            setSelected3("#6c757d")
+
             setSelectedb("#9e4ef5")
             setSelecteda("#6c757d")
+            setSelectedc("#6c757d")
+        }
+        if (router.pathname.startsWith('/bids')) {
+            setSelected2("#6c757d")
+            setSelected1("#6c757d")
+            setSelected3("url(#blue-gradient)")
+
+            setSelectedb("#6c757d")
+            setSelecteda("#6c757d")
+            setSelectedc("#9e4ef5")
         }
     })
 
@@ -129,17 +149,17 @@ function MyApp({ Component, pageProps, router }) {
                                         </a>
                                     </Link>
                                 </li>
-                                {/*<li className="mb-3">
+                                <li className="mb-3">
                                     <Link href="/bids">
-                                        <a href="#" className="px-0 text-secondary text-decoration-none">
-                                            <GiReceiveMoney size="1.5rem" className="me-2 fs-5 bi-speedometer2"/>
-                                            <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline text-secondary">
-                                            Meus Bid's
+                                        <a className="px-0 text-secondary text-decoration-none">
+                                            <GiReceiveMoney size="1.5rem" style={{ fill: selected3}} className="me-2"/>
+                                            <span style={{fontWeight: 600, color: selectedc}} className="ms-1 d-none d-sm-inline">
+                                                Meus Bid's
                                             </span>
                                         </a>
                                     </Link>
                                 </li>
-                                <li className="mb-3">
+                                {/*<li className="mb-3">
                                     <Link href="/transactions">
                                         <a href="#" className="px-0 text-secondary text-decoration-none">
                                             <GoChecklist size="1.5rem" className="me-2 fs-5 bi-speedometer2"/>

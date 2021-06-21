@@ -15,11 +15,12 @@ public class Quotation implements Serializable {
     private String description;
     private Date endDate;
     private Date startDate;
+    private boolean open;
     @ManyToOne
     @JoinColumn(name = "id_enterprise")
     private Enterprise Enterprise;
     @OneToMany(mappedBy = "quotation", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductQuotation> productQuotations;
+    private List<ProductQuotation> productsQuotations;
 
     public long getId() {
         return id;
@@ -66,10 +67,12 @@ public class Quotation implements Serializable {
     public void setEnterprise(Enterprise enterprise) { Enterprise = enterprise; }
 
     public List<ProductQuotation> getProductsQuotations() {
-        return productQuotations;
+        return productsQuotations;
     }
 
-    public void setProductsQuotations(List<ProductQuotation> productQuotations) {
-        this.productQuotations = productQuotations;
-    }
+    public void setProductsQuotations(List<ProductQuotation> productQuotations) { this.productsQuotations = productQuotations; }
+
+    public boolean isOpen() { return open; }
+
+    public void setOpen(boolean open) { this.open = open; }
 }

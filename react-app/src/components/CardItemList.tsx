@@ -1,6 +1,6 @@
-import {Card, Row, Col, Modal, Button, ListGroup} from 'react-bootstrap'
+import {Card, Row, Col, Modal, Button, ListGroup, Form} from 'react-bootstrap'
 import styles from '../styles/components/CardItemList.module.css'
-import {AiOutlineEye, AiOutlineShoppingCart} from 'react-icons/ai'
+import {AiOutlineEye, AiOutlineShoppingCart, AiFillEye} from 'react-icons/ai'
 import { useState } from 'react'
 import { Cotation } from '../interfaces/Cotation'
 import CardProduct from './CardProduct'
@@ -90,15 +90,36 @@ export function CardItemList({ data }: Props){
                                                 <Modal.Title className={styles.title}>Ofertar</Modal.Title>
                                             </Modal.Header>
                                             <Modal.Body className={styles.bgModal}>
-                                                <div className="row mb-1">
-                                                    {data.productsQuotations.map((item) => 
-                                                        <div className="col-6">
-                                                            <CardProduct data={ item as Product } />
-                                                        </div>
-                                                    )}
-                                                </div>
+                                                    <ListGroup as="ul">
+                                                        {data.productsQuotations.map((item) => 
+                                                            <ListGroup.Item as="li" key={item.id}>
+                                                                <Row>
+                                                                    <Col sm={1}>
+                                                                        <Form.Check  type="checkbox" className="d-inline-block"/>
+                                                                    </Col>
+                                                                    <Col>
+                                                                        <span style={{fontWeight: 600, fontSize: 17}}>{item.name}</span>
+                                                                    </Col>
+                                                                    <Col>
+                                                                        <span>Valor máximo pago: <span>{item.limitPrice}</span> </span>
+                                                                    </Col>
+                                                                    <Col sm={1}>
+                                                                        <AiFillEye size="2rem" style={{ fill: "url(#blue-gradient)"}}/>
+                                                                    </Col>
+                                                                </Row>
+                                                            </ListGroup.Item>
+                                                        )}
+                                                    </ListGroup>
                                             </Modal.Body>
                                             <Modal.Footer>
+                                                <Form.Group as={Row} controlId="formHorizontalPrice">
+                                                    <Form.Label column sm={5}>
+                                                        Oferta do bid:
+                                                    </Form.Label>
+                                                    <Col sm={7}>
+                                                        <Form.Control type="number" placeholder="0,00" />
+                                                    </Col>
+                                                </Form.Group>
                                                 <Button className={styles.btColor} onClick={handleCloseSell}>
                                                     Confirmar
                                                 </Button>
