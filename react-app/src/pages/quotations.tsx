@@ -1,7 +1,7 @@
 import {CardItemList} from '../components/CardItemList'
 import styles from '../styles/components/QuotesPage.module.css'
 import { PaginationElement } from '../components/PaginationElement'
-import {CardItemListTitle} from '../components/CardItemListTitle'
+import CardItemListTitle from '../components/CardItemListTitle'
 import { Cotation } from '../interfaces/Cotation'
 import { GetServerSideProps } from 'next'
 import { getAllCotations } from '../api/cotationService'
@@ -19,7 +19,7 @@ const Quotations = ({ items }: Props) => {
                 </div>
             </div>
             <div className="row">
-                <CardItemListTitle/>
+                <CardItemListTitle titles={["Cotação", "Empresa", "Início - Fim", "Uf"]}/>
             </div>
             {items.map((item) =>
                 <div className="row" key={ item.id }>

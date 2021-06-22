@@ -6,13 +6,15 @@ import { Cotation } from '../interfaces/Cotation'
 import CardProduct from './CardProduct'
 import { ProductQuotation } from '../interfaces/ProductQuotation'
 import { Product } from '../interfaces/Product'
+import { registerBid } from '../api/bidService'
 
 type Props = {
     data: Cotation
 }
 
 export function CardItemList({ data }: Props){
-
+    
+    // Modals
     const [details, setShowDetails] = useState(false);
     const handleCloseDetails = () => setShowDetails(false);
     const handleShowDetails = () => setShowDetails(true);
@@ -24,6 +26,44 @@ export function CardItemList({ data }: Props){
     const [more, setShowMore] = useState(false);
     const handleCloseMore = () => setShowMore(false);
     const handleShowMore = () => setShowMore(true);
+
+    // Create Bid
+    const [bidPrice, setBidPrice] = useState('')
+
+    const handleInputChange = (event) => {
+        data.productsQuotations.find((item) => {
+            if(item.id == event.target.value) return item
+        }).checkBid = event.target.checked
+    }
+
+    const handleSubmitBid = (event) => {
+        event.preventDefault()
+        let productsToAdd = data.productsQuotations.filter((item) => {
+            if(item.checkBid) return item
+        }).map((i) => { return i.id })
+
+        if(productsToAdd.length > 0) {
+            registerBid(
+               productsToAdd,
+                data.id,
+                bidPrice
+            )
+
+            data.productsQuotations.map((item) => {
+                item.checkBid = false
+            })
+
+            setBidPrice("")
+
+            handleCloseSell()
+        } else {
+            console.log("faltou marcar")
+        }
+        
+        
+    }
+
+
 
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`} >
@@ -89,41 +129,54 @@ export function CardItemList({ data }: Props){
                                             <Modal.Header className={styles.shadowModalHeader} closeButton>
                                                 <Modal.Title className={styles.title}>Ofertar</Modal.Title>
                                             </Modal.Header>
-                                            <Modal.Body className={styles.bgModal}>
-                                                    <ListGroup as="ul">
-                                                        {data.productsQuotations.map((item) => 
-                                                            <ListGroup.Item as="li" key={item.id}>
-                                                                <Row>
-                                                                    <Col sm={1}>
-                                                                        <Form.Check  type="checkbox" className="d-inline-block"/>
-                                                                    </Col>
-                                                                    <Col>
-                                                                        <span style={{fontWeight: 600, fontSize: 17}}>{item.name}</span>
-                                                                    </Col>
-                                                                    <Col>
-                                                                        <span>Valor máximo pago: <span>{item.limitPrice}</span> </span>
-                                                                    </Col>
-                                                                    <Col sm={1}>
-                                                                        <AiFillEye size="2rem" style={{ fill: "url(#blue-gradient)"}}/>
-                                                                    </Col>
-                                                                </Row>
-                                                            </ListGroup.Item>
-                                                        )}
-                                                    </ListGroup>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                                <Form.Group as={Row} controlId="formHorizontalPrice">
-                                                    <Form.Label column sm={5}>
-                                                        Oferta do bid:
-                                                    </Form.Label>
-                                                    <Col sm={7}>
-                                                        <Form.Control type="number" placeholder="0,00" />
-                                                    </Col>
-                                                </Form.Group>
-                                                <Button className={styles.btColor} onClick={handleCloseSell}>
-                                                    Confirmar
-                                                </Button>
-                                            </Modal.Footer>
+                                            <Form>
+                                                <Modal.Body className={styles.bgModal}>
+                                                        <ListGroup as="ul">
+                                                            {data.productsQuotations.map((item) => 
+                                                                <ListGroup.Item as="li" key={item.id}>
+                                                                    <Row>
+                                                                        <Col sm={1}>
+                                                                            <Form.Check  
+                                                                                type="checkbox" 
+                                                                                className="d-inline-block"
+                                                                                value={item.id} 
+                                                                                onChange={handleInputChange}
+                                                                            />
+                                                                        </Col>
+                                                                        <Col>
+                                                                            <span style={{fontWeight: 600, fontSize: 17}}>{item.name}</span>
+                                                                        </Col>
+                                                                        <Col>
+                                                                            <span>Valor máximo pago: <span>{item.limitPrice}</span> </span>
+                                                                        </Col>
+                                                                        <Col sm={1}>
+                                                                            <AiFillEye size="2rem" style={{ fill: "url(#blue-gradient)"}}/>
+                                                                        </Col>
+                                                                    </Row>
+                                                                </ListGroup.Item>
+                                                            )}
+                                                        </ListGroup>
+                                                </Modal.Body>
+                                                <Modal.Footer>
+                                                    <Form.Group as={Row} controlId="formHorizontalPrice">
+                                                        <Form.Label column sm={5}>
+                                                            Oferta do bid:
+                                                        </Form.Label>
+                                                        <Col sm={7}>
+                                                            {/*required={true}*/}
+                                                            <Form.Control 
+                                                                type="number" 
+                                                                placeholder="0,00"
+                                                                value={bidPrice}
+                                                                onChange={(e) => setBidPrice(e.target.value)}
+                                                            />
+                                                        </Col>
+                                                    </Form.Group>
+                                                    <Button className={styles.btColor} onClick={handleSubmitBid}>
+                                                        Confirmar
+                                                    </Button>
+                                                </Modal.Footer>
+                                            </Form>
                                         </Modal>
                                     </div>
                                 </div>
@@ -131,7 +184,6 @@ export function CardItemList({ data }: Props){
                         </div>
                     </div>
                 </Card.Body>
-                
             </Card>
         </div>
     );
