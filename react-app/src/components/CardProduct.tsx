@@ -29,9 +29,9 @@ const CardProduct = ({ data }: Props) => {
                             <AiFillEye size="2rem" style={{ fill: "url(#blue-gradient)"}}/>
                             
                         </Card.Link>
-                        <Card.Link href="#">
+                        {/*<Card.Link href="#">
                             <Form.Check  type="checkbox" className="d-inline-block"/>
-                        </Card.Link>
+                        </Card.Link>*/}
                    </Col>
                    <Col xs="4" className="ps-0 pe-2">
                         <IoFastFoodSharp className={styles.icon} size="6rem"/>

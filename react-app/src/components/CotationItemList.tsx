@@ -3,16 +3,14 @@ import styles from '../styles/components/CardItemList.module.css'
 import {AiOutlineEye, AiOutlineShoppingCart, AiFillEye} from 'react-icons/ai'
 import { useState } from 'react'
 import { Cotation } from '../interfaces/Cotation'
-import CardProduct from './CardProduct'
-import { ProductQuotation } from '../interfaces/ProductQuotation'
-import { Product } from '../interfaces/Product'
 import { registerBid } from '../api/bidService'
+import CardProductCotation from './CardProductCotation'
 
 type Props = {
     data: Cotation
 }
 
-export function CardItemList({ data }: Props){
+export function CotationItemList({ data }: Props){
     
     // Modals
     const [details, setShowDetails] = useState(false);
@@ -30,40 +28,17 @@ export function CardItemList({ data }: Props){
     // Create Bid
     const [bidPrice, setBidPrice] = useState('')
 
-    const handleInputChange = (event) => {
-        data.productsQuotations.find((item) => {
-            if(item.id == event.target.value) return item
-        }).checkBid = event.target.checked
-    }
-
     const handleSubmitBid = (event) => {
         event.preventDefault()
-        let productsToAdd = data.productsQuotations.filter((item) => {
-            if(item.checkBid) return item
-        }).map((i) => { return i.id })
+        registerBid(
+            data.id,
+            bidPrice
+        )
 
-        if(productsToAdd.length > 0) {
-            registerBid(
-               productsToAdd,
-                data.id,
-                bidPrice
-            )
+        setBidPrice("")
 
-            data.productsQuotations.map((item) => {
-                item.checkBid = false
-            })
-
-            setBidPrice("")
-
-            handleCloseSell()
-        } else {
-            console.log("faltou marcar")
-        }
-        
-        
+        handleCloseSell()
     }
-
-
 
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`} >
@@ -83,7 +58,7 @@ export function CardItemList({ data }: Props){
                             <div className="col d-none d-xl-block">
                                 PE
                             </div>
-                            <div className="col ">
+                            <div className="col-sm-2 ">
                                 <div className="row align-items-center">
                                     <div className="col d-none d-sm-block">
                                         <a href="#">
@@ -131,31 +106,13 @@ export function CardItemList({ data }: Props){
                                             </Modal.Header>
                                             <Form>
                                                 <Modal.Body className={styles.bgModal}>
-                                                        <ListGroup as="ul">
-                                                            {data.productsQuotations.map((item) => 
-                                                                <ListGroup.Item as="li" key={item.id}>
-                                                                    <Row>
-                                                                        <Col sm={1}>
-                                                                            <Form.Check  
-                                                                                type="checkbox" 
-                                                                                className="d-inline-block"
-                                                                                value={item.id} 
-                                                                                onChange={handleInputChange}
-                                                                            />
-                                                                        </Col>
-                                                                        <Col>
-                                                                            <span style={{fontWeight: 600, fontSize: 17}}>{item.name}</span>
-                                                                        </Col>
-                                                                        <Col>
-                                                                            <span>Valor máximo pago: <span>{item.limitPrice}</span> </span>
-                                                                        </Col>
-                                                                        <Col sm={1}>
-                                                                            <AiFillEye size="2rem" style={{ fill: "url(#blue-gradient)"}}/>
-                                                                        </Col>
-                                                                    </Row>
-                                                                </ListGroup.Item>
+                                                        <Row>
+                                                            {data.productsQuotations.map((product) => 
+                                                                <Col key={product.id}>
+                                                                    <CardProductCotation data={product}/>
+                                                                </Col>
                                                             )}
-                                                        </ListGroup>
+                                                        </Row>
                                                 </Modal.Body>
                                                 <Modal.Footer>
                                                     <Form.Group as={Row} controlId="formHorizontalPrice">

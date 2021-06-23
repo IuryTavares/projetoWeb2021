@@ -8,6 +8,7 @@ import { GoChecklist } from 'react-icons/go'
 import { FaUserCircle } from 'react-icons/fa'
 import { BsFillChatDotsFill } from 'react-icons/bs'
 import { FiMenu } from 'react-icons/fi'
+import {Nav} from 'react-bootstrap'
 import Link from 'next/link'
 import Register from './register'
 import Login from './login'
@@ -65,6 +66,33 @@ function MyApp({ Component, pageProps, router }) {
             setSelectedc("#9e4ef5")
         }
     })
+
+    function asd() {
+        if(router.pathname.startsWith('/quotations') || router.pathname.startsWith('/my-quotations')) {
+            return (
+                <div className="row">
+                    <div className="col">
+                        <Nav className="mt-4 mb-3 ms-1" variant="tabs" defaultActiveKey="link-1">
+                            <Nav.Item>
+                                <Nav.Link style={{fontWeight: 600}} eventKey="link-1">
+                                    <Link href="/quotations">
+                                        Todas Cotações
+                                    </Link>
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link style={{fontWeight: 600}} eventKey="link-2">
+                                    <Link href="/my-quotations">
+                                        Minhas Cotações
+                                    </Link>
+                                </Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+                    </div>
+                </div>
+            )
+        }
+    }
 
     return ( 
         <div>
@@ -174,6 +202,7 @@ function MyApp({ Component, pageProps, router }) {
                     </div>
                     <div className={`${homeStyles.bgSelected} vh-100 col`}>
                         <div className="mb-2 px-0 mx-0">
+                            {asd()}
                             <Component {...pageProps} />  
                         </div>
                     </div>

@@ -1,11 +1,15 @@
-import {Card, Modal, Row, Col, Button} from 'react-bootstrap'
+import {Card, Modal, Row, Col} from 'react-bootstrap'
 import styles from '../styles/components/BidsItemList.module.css'
 import {AiOutlineEye} from 'react-icons/ai'
-import {GoKebabVertical} from 'react-icons/go'
 import { useState } from 'react'
-import { CardProduct } from './CardProduct'
+import { Bid } from '../interfaces/Bid'
+import CardProductCotation from './CardProductCotation'
 
-export function BidsItemList(){
+type Props = {
+    bid: Bid
+}
+
+export function BidsItemList( { bid } : Props ){
 
     const [details, setShowDetails] = useState(false);
     const handleCloseDetails = () => setShowDetails(false);
@@ -18,16 +22,16 @@ export function BidsItemList(){
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col">
-                            Cotação
+                            {bid.quotation.id}
                         </div>
                         <div className="col d-none d-xl-block" >
-                            Empresa
+                            {bid.quotation.enterprise.fantasyName}
                         </div>
                         <div className="col d-none d-sm-block">
-                            02/07 - 05/07
+                            {bid.quotation.startDate} - {bid.quotation.endDate}
                         </div>
                         <div className="col d-none d-xl-block">
-                            500R$
+                            {bid.priceValue}
                         </div>
                         <div className="col ">
                             <div className="row align-items-center">
@@ -41,42 +45,14 @@ export function BidsItemList(){
                                         </Modal.Header>
                                         <Modal.Body className={styles.bgModal}>
                                             <Row className="mb-1">
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                            </Row>
-                                            <Row className="mb-1">
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                            </Row>
-                                            <Row className="mb-1">
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                            </Row>
-                                            <Row className="mb-1">
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
+                                                {bid.quotation.productsQuotations.map((product) => 
+                                                    <Col key={product.id}>
+                                                        <CardProductCotation data={product}/>
+                                                    </Col>
+                                                )}
                                             </Row>
                                         </Modal.Body>
                                     </Modal>
-                                </div>
-                                <div className="col">
-                                   <GoKebabVertical size="1.5rem"></GoKebabVertical>
                                 </div>
                             </div>
                         </div>

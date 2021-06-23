@@ -12,8 +12,6 @@ public class Bid implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @OneToMany(mappedBy = "quotation", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductQuotation> productQuotations;
     @ManyToOne
     @JoinColumn(name = "id_enterprise")
     private Enterprise enterprise;
@@ -25,10 +23,6 @@ public class Bid implements Serializable {
     public long getId() { return id; }
 
     public void setId(long id) { this.id = id; }
-
-    public List<ProductQuotation> getProductQuotations() { return productQuotations; }
-
-    public void setProductQuotations(List<ProductQuotation> productQuotations) { this.productQuotations = productQuotations; }
 
     public Enterprise getEnterprise() { return enterprise; }
 

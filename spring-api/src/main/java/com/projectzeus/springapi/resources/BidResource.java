@@ -32,7 +32,6 @@ public class BidResource {
 
     @PostMapping("/bid/create/{cnpj}")
     public ResponseEntity<String> createEnterprise(@RequestBody BidDTO bidDTO, @PathVariable("cnpj") String cnpj) {
-        List<Long> productsIds = bidDTO.getProductsIds();
         Long quotationId = bidDTO.getQuotationId();
 
         Enterprise loggedEnterprise = enterprises.findOneByCnpj(cnpj);
@@ -48,27 +47,20 @@ public class BidResource {
         bid.setQuotation(quotation);
         bid.setPriceValue(bidDTO.getPriceValue());
 
-        List<ProductQuotation> productsToAdd = productsQuotation.findProductByIdIn(productsIds);
-        if (productsToAdd.size() == 0) {
-            return new ResponseEntity("Sem produtos para adicionar", HttpStatus.BAD_REQUEST);
-        }
-        System.out.println(productsToAdd.get(0).getName());
-        bid.setProductQuotations(productsToAdd);
-
         bids.save(bid);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/bid/get/enterprise/{cnpj}")
-    public List<Bid> getAllByEnterprise(@PathVariable("cnpj") String cnpj) {
+    @GetMapping("/bid/get-all-by-enterprise/{cnpj}")
+    public ResponseEntity<List<Bid>> getAllByEnterprise(@PathVariable("cnpj") String cnpj) {
         Enterprise enterprise = enterprises.findOneByCnpj(cnpj);
-        return bids.findBidsByEnterpriseId(enterprise.getId());
-        //return new ResponseEntity<>(bids.findBidsByEnterpriseId(enterprise.getId()), HttpStatus.OK);
+        return new ResponseEntity(bids.findBidsByEnterpriseId(enterprise.getId()), HttpStatus.OK);
     }
 
-    /*@GetMapping("/bid/get/quotation/{cnpj}")
-    public ResponseEntity<List<Bid>> getAllByQuotation(@RequestBody BidDTO bidDTO, @PathVariable("cnpj") String cnpj) {
-
-    }*/
+    @GetMapping("/bid/get-all-by-quotation/")
+    public ResponseEntity<List<Bid>> getAllByQuotation(@RequestBody Long id) {
+        Quotation quotation = quotations.findOneById(id);
+        return new ResponseEntity(bids.findBidsByQuotationId(quotation.getId()), HttpStatus.OK);
+    }
 }

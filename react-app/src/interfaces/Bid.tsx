@@ -3,8 +3,8 @@ import { Enterprise } from "./Enterprise";
 import { ProductQuotation } from "./ProductQuotation";
 
 export type Bid = {
-    productQuotations: ProductQuotation[],
+    id: number,
     enterprise: Enterprise,
-    Cotation: Cotation,
+    quotation: Cotation,
     priceValue: number
 }

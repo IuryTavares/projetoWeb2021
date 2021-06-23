@@ -5,7 +5,7 @@ type Props = {
     titles: string[]
 }
 
-const CardItemListTitle = ({ titles }: Props) => {
+const TitleItemList = ({ titles }: Props) => {
     return(
         <div className={`${styles.divCard} px-0 mx-0`} >
             <Card className={styles.cardContainer}>
@@ -24,9 +24,7 @@ const CardItemListTitle = ({ titles }: Props) => {
                             <div className="col d-none d-xl-block">
                                 {titles[3]}
                             </div>
-                            <div className="col">
-                            
-                            </div>
+                            <div className="col-2"></div>
                         </div>
                     </div>
                 </Card.Body>
@@ -35,4 +33,4 @@ const CardItemListTitle = ({ titles }: Props) => {
     );
 }
 
-export default CardItemListTitle
+export default TitleItemList

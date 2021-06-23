@@ -1,6 +1,6 @@
-export type Enterprise {
+export type Enterprise = {
     id,
-    fantasyName,
+    fantasyName: string,
     cnpj,
     address
 }

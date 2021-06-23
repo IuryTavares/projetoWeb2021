@@ -18,7 +18,7 @@ public class Quotation implements Serializable {
     private boolean open;
     @ManyToOne
     @JoinColumn(name = "id_enterprise")
-    private Enterprise Enterprise;
+    private Enterprise enterprise;
     @OneToMany(mappedBy = "quotation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductQuotation> productsQuotations;
 
@@ -62,9 +62,9 @@ public class Quotation implements Serializable {
         this.startDate = startDate;
     }
 
-    public Enterprise getEnterprise() { return Enterprise; }
+    public Enterprise getEnterprise() { return enterprise; }
 
-    public void setEnterprise(Enterprise enterprise) { Enterprise = enterprise; }
+    public void setEnterprise(Enterprise enterprise) { this.enterprise = enterprise; }
 
     public List<ProductQuotation> getProductsQuotations() {
         return productsQuotations;

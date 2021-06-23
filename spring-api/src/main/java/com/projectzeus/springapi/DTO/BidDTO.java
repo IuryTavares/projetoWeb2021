@@ -5,13 +5,8 @@ import java.util.List;
 
 public class BidDTO {
 
-    private List<Long> productsIds;
     private Long quotationId;
     private BigDecimal priceValue;
-
-    public List<Long> getProductsIds() { return productsIds; }
-
-    public void setProductsIds(List<Long> productsIds) { this.productsIds = productsIds; }
 
     public Long getQuotationId() { return quotationId; }
 
