@@ -31,7 +31,12 @@ export default function Login() {
                             <RiLockPasswordFill size="1.3rem" style={{ fill: "url(#blue-gradient)" }}/>
                         </InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl id="inlineFormInputGroup" placeholder="Senha" />
+                    <FormControl
+                    type="password" 
+                    id="inlineFormInputGroup"
+                    name="password" 
+                    placeholder="Senha"
+                    required/>
                 </InputGroup>
                 <Form.Group controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Lembrar-me" />

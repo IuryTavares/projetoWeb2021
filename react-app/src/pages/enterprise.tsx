@@ -39,16 +39,22 @@ const RegisterEnterprise = () => {
                         <Form.Control 
                             type="text" 
                             value={name}
+                            maxLength={30}
                             onChange={(e) => setName(e.target.value)} 
-                            placeholder="Nome Fantasia" />
+                            placeholder="Nome Fantasia" 
+                            required/>
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>CNPJ</Form.Label>
                         <Form.Control 
-                            type="number" 
+                            type="text" 
                             value={cnpj}
+                            pattern="[0-9]+$"
+                            minLength={14}
+                            maxLength={14}
                             onChange={(e) => setCnpj(e.target.value)} 
-                            placeholder="CNPJ (Apenas números)" />
+                            placeholder="CNPJ (Apenas números)" 
+                            required/>
                     </Form.Group>
                 </Form.Row>
                 <Form.Group as={Col} className="mb-3">
@@ -56,8 +62,10 @@ const RegisterEnterprise = () => {
                     <Form.Control 
                         type="text" 
                         value={address}
+                        maxLength={40}
                         onChange={(e) => setAddress(e.target.value)} 
-                        placeholder="Endereço" />
+                        placeholder="Endereço" 
+                        required/>
                 </Form.Group>
                 <div className="text-center mb-3 mt-5">
                     <Row>

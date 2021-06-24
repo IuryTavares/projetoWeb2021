@@ -9,7 +9,7 @@ import java.util.List;
 public class Enterprise implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String fantasyName;
     private String cnpj;

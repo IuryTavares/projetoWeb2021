@@ -26,7 +26,7 @@ const Products = ( { items }: Props) => {
 
     const handleSubmitProduct = (event) => {
         event.preventDefault()
-
+        
         registerProduct(
             name, 
             description, 
@@ -118,7 +118,8 @@ const Products = ( { items }: Props) => {
                                                     type="date" 
                                                     value={initDate}
                                                     onChange={(e) => setInitDate(e.target.value)}
-                                                    placeholder="Data de Início" />
+                                                    placeholder="Data de Início" 
+                                                    required/>
                                             </div>
                                         </div>
                                         <div className="row mb-sm-3">
@@ -128,7 +129,8 @@ const Products = ( { items }: Props) => {
                                                     type="date" 
                                                     value={endDate}
                                                     onChange={(e) => setEndDate(e.target.value)}
-                                                    placeholder="Data do Fim" />
+                                                    placeholder="Data do Fim" 
+                                                    required/>
                                             </div>
                                         </div>
                                         <div className="row mb-sm-3">
@@ -136,10 +138,12 @@ const Products = ( { items }: Props) => {
                                                 <div className="form-group">
                                                     <textarea 
                                                         className="form-control" 
-                                                        rows={3} 
+                                                        rows={3}
+                                                        maxLength={150}
                                                         value={descriptionCotation}
                                                         onChange={(e) => setDescripitionCotation(e.target.value)}
-                                                        placeholder="Descrição"></textarea>
+                                                        placeholder="Descrição"
+                                                        required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -216,7 +220,8 @@ const Products = ( { items }: Props) => {
                                             id="brand" 
                                             value={brand}
                                             onChange={(e) => setBrand(e.target.value)} 
-                                            placeholder="Marca" />
+                                            placeholder="Marca" 
+                                            required/>
                                     </div>
                                 </div>
                                 <div className="row mb-sm-3">
@@ -226,8 +231,10 @@ const Products = ( { items }: Props) => {
                                             type="number" 
                                             id="quantity" 
                                             value={quantity}
+                                            min={1}
                                             onChange={(e) => setQuantity(e.target.value)}
-                                            placeholder="Quantidade" />
+                                            placeholder="Quantidade" 
+                                            required/>
                                     </div>
                                     <div className="col">
                                         <input 
@@ -235,8 +242,10 @@ const Products = ( { items }: Props) => {
                                             id="limitePrice" 
                                             type="number"
                                             value={limitPrice}
+                                            min={1}
                                             onChange={(e) => setLimitPrice(e.target.value)}
-                                            placeholder="Preço Limite" />
+                                            placeholder="Preço Limite" 
+                                            required/>
                                     </div>
                                 </div>
                                 <div className="row mb-sm-3">

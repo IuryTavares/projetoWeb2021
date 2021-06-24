@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const registerCotation = async(startDate, endDate, description, ids) => {
-    const cnpj = "11111111"
+    const cnpj = "11111111111111"
     const { data } = await axios.post(
         'http://localhost:8080/api/quotation/create/' + cnpj,
         { quotation: {startDate, 

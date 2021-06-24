@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class ProductQuotation implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @JsonIgnore
     @ManyToOne()

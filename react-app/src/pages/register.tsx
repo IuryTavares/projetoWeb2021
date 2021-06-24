@@ -19,19 +19,25 @@ const RegisterUser = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault() // pra nao recarregar a pagina
-
-        registerUser(
-            name, 
-            birthDate, 
-            email, 
-            address, 
-            password, 
-            cpf
-        )
-
-        router.push({
-            pathname: '/enterprise',
-        })
+        
+        if (password==confirmPassword) {
+            registerUser(
+                name, 
+                birthDate, 
+                email, 
+                address, 
+                password, 
+                cpf  
+            )
+            router.push({
+                pathname: '/enterprise',
+            })
+        } else {
+            console.log(password);
+            console.log(confirmPassword);
+            console.log("senhas diferentes");
+        }
+        
     }
 
     return (
@@ -51,18 +57,23 @@ const RegisterUser = () => {
                                     id="name" 
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    placeholder="Nome Completo" />
-                                   
+                                    placeholder="Nome Completo"
+                                    maxLength={50}
+                                    required />
                             </div>
                             <div className="col-md">
                                 <label className="col-form-label">CPF</label>
                                 <input 
-                                    type="number" 
+                                    type="text" 
                                     className="form-control" 
                                     id="cpf" 
+                                    pattern="[0-9]+$"
+                                    minLength={11}
+                                    maxLength={11}
                                     value={cpf}
                                     onChange={(e) => setCpf(e.target.value)}
-                                    placeholder="CPF (Apenas números)" />
+                                    placeholder="CPF (Apenas números)" 
+                                    required/>
                             </div>
                         </div>
                         <div className="row mb-3">
@@ -71,10 +82,12 @@ const RegisterUser = () => {
                                 <input 
                                     type="text" 
                                     className="form-control" 
-                                    id="adress" 
+                                    id="address"
+                                    maxLength={40} 
                                     value={address}
                                     onChange={(e) => setAddress(e.target.value)}
-                                    placeholder="Endereço" />
+                                    placeholder="Endereço" 
+                                    required/>
                             </div>
                             <div className="col-md">
                                 <label className="col-form-label">Data de Nascimento</label>
@@ -84,7 +97,8 @@ const RegisterUser = () => {
                                     id="date" 
                                     value={birthDate}
                                     onChange={(e) => setBirthDate(e.target.value)}
-                                    placeholder="CPF (Apenas números)"/>
+                                    placeholder="CPF (Apenas números)"
+                                    required/>
                             </div>
                         </div>
                         <div className="form-group mb-3">
@@ -95,7 +109,8 @@ const RegisterUser = () => {
                                 id="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)} 
-                                placeholder="Insira seu Email"/>
+                                placeholder="Insira seu Email"
+                                required/>
                         </div>
                         <div className="row mb-3">
                             <div className="col-md">
@@ -103,20 +118,28 @@ const RegisterUser = () => {
                                 <input 
                                     type="password" 
                                     className="form-control" 
-                                    id="password" 
+                                    id="password"
+                                    name="password"
+                                    minLength={8}
+                                    maxLength={15}
+                                    pattern="(?=.*\d)(?=.*[a-z]).{8,}" 
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="Senha contendo letras e números" />
+                                    placeholder="Senha contendo letras e números" 
+                                    required/>
                             </div>
                             <div className="col-md">
                                 <label className="col-form-label">Confirme sua Senha</label>
                                 <input 
                                     type="password" 
                                     className="form-control" 
-                                    id="confirmPassword" 
+                                    id="confirmPassword"
+                                    minLength={8}
+                                    maxLength={15} 
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    placeholder="Repita a senha"/>
+                                    placeholder="Repita a senha"
+                                    required/>
                             </div>
                         </div>
                         <div className="row">
