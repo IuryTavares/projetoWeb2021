@@ -6,5 +6,6 @@ export type ProductQuotation = {
     description, 
     limitPrice, 
     quantity, 
-    brand
+    brand,
+    checkBid: false
 }

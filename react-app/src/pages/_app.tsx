@@ -1,19 +1,19 @@
 import '../styles/globals.css'
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css'
 import styles from '../styles/components/Bar.module.css'
-import homeStyles from '../styles//pages/Home.module.css'
-import {IoBagCheck} from 'react-icons/io5';
-import {GiFruitBowl, GiReceiveMoney} from 'react-icons/gi'
-import {GoChecklist} from 'react-icons/go'
-import {FaUserCircle} from 'react-icons/fa'
-import {BsFillChatDotsFill} from 'react-icons/bs'
-import {FiMenu} from 'react-icons/fi'
+import homeStyles from '../styles/pages/Home.module.css'
+import { IoBagCheck } from 'react-icons/io5';
+import { GiFruitBowl, GiReceiveMoney } from 'react-icons/gi'
+import { GoChecklist } from 'react-icons/go'
+import { FaUserCircle } from 'react-icons/fa'
+import { BsFillChatDotsFill } from 'react-icons/bs'
+import { FiMenu } from 'react-icons/fi'
+import {Nav} from 'react-bootstrap'
 import Link from 'next/link'
 import Register from './register'
 import Login from './login'
 import RegisterEnterprise from './enterprise'
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function MyApp({ Component, pageProps, router }) {
 
@@ -29,23 +29,70 @@ function MyApp({ Component, pageProps, router }) {
 
     const [selected1, setSelected1] = useState('')
     const [selected2, setSelected2] = useState('')
+    const [selected3, setSelected3] = useState('')
+    const [selectedTransactionIcon, setSelectedTransactionIcon] = useState('')
+
     const [selecteda, setSelecteda] = useState('')
     const [selectedb, setSelectedb] = useState('')
+    const [selectedc, setSelectedc] = useState('')
+    const [selectedTransaction, setSelectedTransaction] = useState('')
 
     useEffect(() => {
         if (router.pathname.startsWith('/quotations')) {
            setSelected1("url(#blue-gradient)")
            setSelected2("#6c757d")
+           setSelected3("#6c757d")
+           
            setSelecteda("#9e4ef5")
            setSelectedb("#6c757d")
+           setSelectedc("#6c757d")
         }
         if (router.pathname.startsWith('/products')) {
             setSelected2("url(#blue-gradient)")
             setSelected1("#6c757d")
+            setSelected3("#6c757d")
+
             setSelectedb("#9e4ef5")
             setSelecteda("#6c757d")
+            setSelectedc("#6c757d")
+        }
+        if (router.pathname.startsWith('/bids')) {
+            setSelected2("#6c757d")
+            setSelected1("#6c757d")
+            setSelected3("url(#blue-gradient)")
+
+            setSelectedb("#6c757d")
+            setSelecteda("#6c757d")
+            setSelectedc("#9e4ef5")
         }
     })
+
+    function asd() {
+        if(router.pathname.startsWith('/quotations') || router.pathname.startsWith('/my-quotations')) {
+            return (
+                <div className="row">
+                    <div className="col">
+                        <Nav className="mt-4 mb-3 ms-1" variant="tabs" defaultActiveKey="link-1">
+                            <Nav.Item>
+                                <Nav.Link style={{fontWeight: 600}} eventKey="link-1">
+                                    <Link href="/quotations">
+                                        Todas Cotações
+                                    </Link>
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link style={{fontWeight: 600}} eventKey="link-2">
+                                    <Link href="/my-quotations">
+                                        Minhas Cotações
+                                    </Link>
+                                </Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+                    </div>
+                </div>
+            )
+        }
+    }
 
     return ( 
         <div>
@@ -130,17 +177,17 @@ function MyApp({ Component, pageProps, router }) {
                                         </a>
                                     </Link>
                                 </li>
-                                {/*<li className="mb-3">
+                                <li className="mb-3">
                                     <Link href="/bids">
-                                        <a href="#" className="px-0 text-secondary text-decoration-none">
-                                            <GiReceiveMoney size="1.5rem" className="me-2 fs-5 bi-speedometer2"/>
-                                            <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline text-secondary">
-                                            Meus Bid's
+                                        <a className="px-0 text-secondary text-decoration-none">
+                                            <GiReceiveMoney size="1.5rem" style={{ fill: selected3}} className="me-2"/>
+                                            <span style={{fontWeight: 600, color: selectedc}} className="ms-1 d-none d-sm-inline">
+                                                Meus Bid's
                                             </span>
                                         </a>
                                     </Link>
                                 </li>
-                                <li className="mb-3">
+                                {/*<li className="mb-3">
                                     <Link href="/transactions">
                                         <a href="#" className="px-0 text-secondary text-decoration-none">
                                             <GoChecklist size="1.5rem" className="me-2 fs-5 bi-speedometer2"/>
@@ -155,6 +202,7 @@ function MyApp({ Component, pageProps, router }) {
                     </div>
                     <div className={`${homeStyles.bgSelected} vh-100 col`}>
                         <div className="mb-2 px-0 mx-0">
+                            {asd()}
                             <Component {...pageProps} />  
                         </div>
                     </div>

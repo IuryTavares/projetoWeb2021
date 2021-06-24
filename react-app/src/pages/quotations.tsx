@@ -1,10 +1,11 @@
-import {CardItemList} from '../components/CardItemList'
+import { CotationItemList } from '../components/CotationItemList'
 import styles from '../styles/components/QuotesPage.module.css'
 import { PaginationElement } from '../components/PaginationElement'
-import {CardItemListTitle} from '../components/CardItemListTitle'
-import { Cotation } from '../interfaces/cotation'
+import TitleItemList from '../components/TitleItemList'
+import { Cotation } from '../interfaces/Cotation'
 import { GetServerSideProps } from 'next'
 import { getAllCotations } from '../api/cotationService'
+import { Nav } from 'react-bootstrap'
 
 type Props = {
     items: Cotation[]
@@ -14,20 +15,13 @@ const Quotations = ({ items }: Props) => {
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`}>
             <div className="row">
-                <div className="col">
-                    <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Cotação</h5>
-                </div>
-            </div>
-            <div className="row">
-                <CardItemListTitle/>
+                <TitleItemList titles={["Cotação", "Empresa", "Início - Fim", "Uf"]}/>
             </div>
             {items.map((item) =>
                 <div className="row" key={ item.id }>
-                    <CardItemList data={ item }/>
+                    <CotationItemList data={ item }/>
                 </div>
             )}
-
-            
 
             {/*<footer className={styles.footerContainer}>                
                 <div className="row" style={{position: 'absolute'}}>

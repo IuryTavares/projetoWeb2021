@@ -1,14 +1,12 @@
-import {Modal} from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import styles from '../styles/components/MyProductsPage.module.css'
 import CardProduct from '../components/CardProduct'
 import { IoAddCircleSharp } from 'react-icons/io5'
 import { RiShoppingCart2Fill } from 'react-icons/ri'
-import { ImCancelCircle } from 'react-icons/im'
 import { useState } from 'react'
 import { registerProduct, getAllProducts } from '../api/productsService'
-import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { GetServerSideProps } from 'next'
 import { Product } from '../interfaces/Product'
-import ItemProductModal from '../components/ItemProductModal'
 import { registerCotation } from '../api/cotationService'
 
 type Props = {

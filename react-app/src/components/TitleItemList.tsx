@@ -1,7 +1,11 @@
 import {Card} from 'react-bootstrap'
 import styles from '../styles/components/CardItemListTitle.module.css'
 
-export function CardItemListTitle(){
+type Props = {
+    titles: string[]
+}
+
+const TitleItemList = ({ titles }: Props) => {
     return(
         <div className={`${styles.divCard} px-0 mx-0`} >
             <Card className={styles.cardContainer}>
@@ -9,20 +13,18 @@ export function CardItemListTitle(){
                     <div className="container-fluid">
                         <div className="row align-items-center">
                             <div className="col">
-                                Cotação
+                                {titles[0]}
                             </div>
                             <div className="col d-none d-xl-block" >
-                                Empresa
+                                {titles[1]}
                             </div>
                             <div className="col d-none d-sm-block">
-                                Início - Fim
+                                {titles[2]}
                             </div>
                             <div className="col d-none d-xl-block">
-                                Uf
+                                {titles[3]}
                             </div>
-                            <div className="col">
-                            
-                            </div>
+                            <div className="col-2"></div>
                         </div>
                     </div>
                 </Card.Body>
@@ -30,3 +32,5 @@ export function CardItemListTitle(){
         </div>
     );
 }
+
+export default TitleItemList

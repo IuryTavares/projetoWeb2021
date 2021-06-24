@@ -40,12 +40,20 @@ public class QuotationResource {
         return new ResponseEntity<>(quotations.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/quotations/get-all-by-enterprise/{cnpj}")
+    public ResponseEntity<List<Quotation>> getAllByEnterprise(@PathVariable("cnpj") String cnpj) {
+        Enterprise enterprise = enterprises.findOneByCnpj(cnpj);
+        return new ResponseEntity(quotations.findQuotationsByEnterpriseId(enterprise.getId()), HttpStatus.OK);
+    }
+
     @PostMapping("/quotation/create/{cnpj}")
     public ResponseEntity<String> createQuotation(@RequestBody() QuotationDTO quotationDTO, @PathVariable("cnpj") String cnpj) {
         List<Long> ids = quotationDTO.getIds();
         Quotation quotation = quotationDTO.getQuotation();
 
         Enterprise loggedEnterprise = enterprises.findOneByCnpj(cnpj);
+
+        System.out.println(loggedEnterprise.getFantasyName());
         if (loggedEnterprise == null)
             return new ResponseEntity("Empresa não cadastrada", HttpStatus.BAD_REQUEST);
 
@@ -55,6 +63,7 @@ public class QuotationResource {
         if (productsToAdd.size() == 0) {
             return new ResponseEntity("Sem produtos para adicionar", HttpStatus.BAD_REQUEST);
         }
+        quotation.setOpen(true);
         quotations.save(quotation);
         List<ProductQuotation> productsQuotationsToAdd = new ArrayList<>();
         for (Product product : productsToAdd) {

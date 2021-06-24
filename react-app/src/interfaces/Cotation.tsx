@@ -8,5 +8,6 @@ export type Cotation = {
     endDate,
     startDate,
     productsQuotations: ProductQuotation[],
-    enterprise: Enterprise
+    enterprise: Enterprise,
+    open
 }

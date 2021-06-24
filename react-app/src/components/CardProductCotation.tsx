@@ -1,14 +1,16 @@
-import {Row, Col, Card, Form} from 'react-bootstrap'
+import {Row, Col, Card} from 'react-bootstrap'
 import styles from '../styles/components/CardProduct.module.css'
 import {AiFillEye} from 'react-icons/ai'
 import {IoFastFoodSharp} from 'react-icons/io5'
 import { Product } from '../interfaces/Product'
+import { ProductQuotation } from '../interfaces/ProductQuotation'
+import { useEffect } from 'react'
 
 type Props = {
-    data: Product
+    data: ProductQuotation
 }
 
-const CardProduct = ({ data }: Props) => {
+const CardProductCotation = ({ data }: Props) => {
     return (
         <Card className={`${styles.cardContainer} pb-0 mb-2`}>
             <Card.Body className="pb-2">
@@ -25,13 +27,7 @@ const CardProduct = ({ data }: Props) => {
                                 <stop stopColor="#9e4ef5" offset="100%" />
                             </linearGradient>
                         </svg>
-                        <Card.Link href="#">
-                            <AiFillEye size="2rem" style={{ fill: "url(#blue-gradient)"}}/>
-                            
-                        </Card.Link>
-                        {/*<Card.Link href="#">
-                            <Form.Check  type="checkbox" className="d-inline-block"/>
-                        </Card.Link>*/}
+                        <Card.Link href="#"><AiFillEye size="2rem" style={{ fill: "url(#blue-gradient)"}}/></Card.Link>
                    </Col>
                    <Col xs="4" className="ps-0 pe-2">
                         <IoFastFoodSharp className={styles.icon} size="6rem"/>
@@ -42,4 +38,4 @@ const CardProduct = ({ data }: Props) => {
     )
 }
 
-export default CardProduct
+export default CardProductCotation

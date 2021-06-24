@@ -11,4 +11,5 @@ public interface ProductQuotationRepository extends JpaRepository<ProductQuotati
     List<ProductQuotation> findProductQuotationByIdIn(List<Long> ids);
     ProductQuotation findById(long id);
     List<ProductQuotation> findProductQuotationByQuotationId(Long id);
+    List<ProductQuotation> findProductByIdIn(List<Long> ids);
 }

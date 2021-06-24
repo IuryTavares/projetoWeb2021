@@ -1,20 +1,18 @@
-import {Card, Row, Col, Modal, Button, ListGroup} from 'react-bootstrap'
+import {Card, Row, Col, Modal, Button, ListGroup, Form} from 'react-bootstrap'
 import styles from '../styles/components/CardItemList.module.css'
-import {AiOutlineEye, AiOutlineShoppingCart} from 'react-icons/ai'
-import {GoKebabVertical} from 'react-icons/go'
+import {AiOutlineEye, AiOutlineShoppingCart, AiFillEye} from 'react-icons/ai'
 import { useState } from 'react'
-import CardProduct from './CardProduct'
-import { Cotation } from '../interfaces/cotation'
-import { getAllProductsCotations } from '../api/cotationService'
-import { useEffect } from 'react'
-import { ProductQuotation } from '../interfaces/ProductQuotation'
+import { Cotation } from '../interfaces/Cotation'
+import { registerBid } from '../api/bidService'
+import CardProductCotation from './CardProductCotation'
 
 type Props = {
     data: Cotation
 }
 
-export function CardItemList({ data }: Props){
-
+export function CotationItemList({ data }: Props){
+    
+    // Modals
     const [details, setShowDetails] = useState(false);
     const handleCloseDetails = () => setShowDetails(false);
     const handleShowDetails = () => setShowDetails(true);
@@ -26,6 +24,21 @@ export function CardItemList({ data }: Props){
     const [more, setShowMore] = useState(false);
     const handleCloseMore = () => setShowMore(false);
     const handleShowMore = () => setShowMore(true);
+
+    // Create Bid
+    const [bidPrice, setBidPrice] = useState('')
+
+    const handleSubmitBid = (event) => {
+        event.preventDefault()
+        registerBid(
+            data.id,
+            bidPrice
+        )
+
+        setBidPrice("")
+
+        handleCloseSell()
+    }
 
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`} >
@@ -45,7 +58,7 @@ export function CardItemList({ data }: Props){
                             <div className="col d-none d-xl-block">
                                 PE
                             </div>
-                            <div className="col ">
+                            <div className="col-sm-2 ">
                                 <div className="row align-items-center">
                                     <div className="col d-none d-sm-block">
                                         <a href="#">
@@ -71,9 +84,13 @@ export function CardItemList({ data }: Props){
                                                         </label>
                                                     </Col>
                                                     <Col>
-                                                    <ListGroup>
-                                                        { }
-                                                    </ListGroup>
+                                                        <ul className="list-group">
+                                                            {data.productsQuotations.map((item)=>
+                                                                <li className="list-group-item" key={item.id}>
+                                                                    {item.name}: <span className="text-end"> {item.quantity} un. </span> 
+                                                                </li>
+                                                            )}
+                                                        </ul>
                                                     </Col>
                                                 </Row>
                                             </Modal.Body>
@@ -87,45 +104,36 @@ export function CardItemList({ data }: Props){
                                             <Modal.Header className={styles.shadowModalHeader} closeButton>
                                                 <Modal.Title className={styles.title}>Ofertar</Modal.Title>
                                             </Modal.Header>
-                                            <Modal.Body className={styles.bgModal}>
-                                                <Row className="mb-1">
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                </Row>
-                                                <Row className="mb-1">
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                </Row>
-                                                <Row className="mb-1">
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                </Row>
-                                                <Row className="mb-1">
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                    <Col>
-                                                        
-                                                    </Col>
-                                                </Row>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                                <Button className={styles.btColor} onClick={handleCloseSell}>
-                                                    Confirmar
-                                                </Button>
-                                            </Modal.Footer>
+                                            <Form>
+                                                <Modal.Body className={styles.bgModal}>
+                                                        <Row>
+                                                            {data.productsQuotations.map((product) => 
+                                                                <Col key={product.id}>
+                                                                    <CardProductCotation data={product}/>
+                                                                </Col>
+                                                            )}
+                                                        </Row>
+                                                </Modal.Body>
+                                                <Modal.Footer>
+                                                    <Form.Group as={Row} controlId="formHorizontalPrice">
+                                                        <Form.Label column sm={5}>
+                                                            Oferta do bid:
+                                                        </Form.Label>
+                                                        <Col sm={7}>
+                                                            {/*required={true}*/}
+                                                            <Form.Control 
+                                                                type="number" 
+                                                                placeholder="0,00"
+                                                                value={bidPrice}
+                                                                onChange={(e) => setBidPrice(e.target.value)}
+                                                            />
+                                                        </Col>
+                                                    </Form.Group>
+                                                    <Button className={styles.btColor} onClick={handleSubmitBid}>
+                                                        Confirmar
+                                                    </Button>
+                                                </Modal.Footer>
+                                            </Form>
                                         </Modal>
                                     </div>
                                 </div>
@@ -133,7 +141,6 @@ export function CardItemList({ data }: Props){
                         </div>
                     </div>
                 </Card.Body>
-                
             </Card>
         </div>
     );

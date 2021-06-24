@@ -19,6 +19,14 @@ export const getAllCotations = async() => {
     return data
 }
 
+export const getAllCotationsByEnterprise = async() => {
+    const cnpj = "11111111"
+    const { data } = await axios.get(
+        'http://localhost:8080/api/quotations/get-all-by-enterprise/' + cnpj
+    )
+    return data
+}
+
 export const getAllProductsCotations = async(id) => {
     const { data } = await axios.get(
         'http://localhost:8080/api/productQuotation/' + id
