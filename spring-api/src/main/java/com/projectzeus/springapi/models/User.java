@@ -1,12 +1,14 @@
 package com.projectzeus.springapi.models;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name="person")
+@Transactional
 public class User implements Serializable {
 
     @Id

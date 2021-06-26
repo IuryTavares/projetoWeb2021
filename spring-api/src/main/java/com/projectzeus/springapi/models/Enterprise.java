@@ -1,10 +1,13 @@
 package com.projectzeus.springapi.models;
 
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "enterprise")
+@EnableTransactionManagement
 public class Enterprise implements Serializable {
 
     @Id

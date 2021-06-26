@@ -28,7 +28,14 @@ public class EnterpriseResource {
 
     @PostMapping("/enterprise/create")
     public ResponseEntity<String> createEnterprise(@RequestBody Enterprise enterprise) {
+        String cpf = "11370233418";
+        User userLogged = users.findOneByCpf(cpf);
         enterprises.save(enterprise);
+        if(userLogged != null) {
+            userLogged.setEnterprise(enterprise);
+            //userLogged.getEnterprise().setId(enterprise.getId());
+            users.save(userLogged);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
