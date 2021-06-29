@@ -58,9 +58,8 @@ public class BidResource {
         return new ResponseEntity(bids.findBidsByEnterpriseId(enterprise.getId()), HttpStatus.OK);
     }
 
-    @GetMapping("/bid/get-all-by-quotation/")
-    public ResponseEntity<List<Bid>> getAllByQuotation(@RequestBody Long id) {
-        Quotation quotation = quotations.findOneById(id);
-        return new ResponseEntity(bids.findBidsByQuotationId(quotation.getId()), HttpStatus.OK);
+    @GetMapping("/bid/get-all-by-quotation/{id}")
+    public ResponseEntity<List<Bid>> getAllByQuotation(@PathVariable("id") Long id) {
+        return new ResponseEntity(bids.findBidsByQuotationId(id), HttpStatus.OK);
     }
 }

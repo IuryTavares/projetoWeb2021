@@ -17,3 +17,11 @@ export const getAllBidsByEnterprise = async() => {
     )
     return data
 }
+
+export const getAllBidsByCotation = async(id) => {
+    const { data } = await axios.get(
+        'http://localhost:8080/api/bid/get-all-by-quotation/' + id,
+    )
+    console.log(data)
+    return data
+}

@@ -1,3 +1,4 @@
+import { Bid } from "./Bid";
 import { Enterprise } from "./Enterprise";
 import { ProductQuotation } from "./ProductQuotation";
 

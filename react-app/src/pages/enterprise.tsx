@@ -67,7 +67,6 @@ const RegisterEnterprise = () => {
                                 <stop stopColor="#9e4ef5" offset="100%" />
                             </linearGradient>
                         </svg>
-                        
                         <Col>
                             <Link href="/register"><a>
                                 <AiFillLeftCircle size="3.5rem" style={{ fill: "url(#blue-gradient)"}}/>
