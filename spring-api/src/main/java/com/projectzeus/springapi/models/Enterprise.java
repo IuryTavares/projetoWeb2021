@@ -1,14 +1,17 @@
 package com.projectzeus.springapi.models;
 
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "enterprise")
+@EnableTransactionManagement
 public class Enterprise implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String fantasyName;
     private String cnpj;

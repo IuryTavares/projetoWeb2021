@@ -1,16 +1,18 @@
 package com.projectzeus.springapi.models;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name="person")
+@Transactional
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     @JoinColumn(name = "id_enterprise")
