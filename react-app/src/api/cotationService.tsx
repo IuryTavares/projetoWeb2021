@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { Cotation } from '../interfaces/Cotation';
+import { Enterprise } from '../interfaces/Enterprise';
 
 export const registerCotation = async(startDate, endDate, description, ids) => {
     const cnpj = "11111111111111"
@@ -20,7 +22,7 @@ export const getAllCotations = async() => {
 }
 
 export const getAllCotationsByEnterprise = async() => {
-    const cnpj = "11111111"
+    const cnpj = "11111111111111"
     const { data } = await axios.get(
         'http://localhost:8080/api/quotations/get-all-by-enterprise/' + cnpj
     )
@@ -32,4 +34,10 @@ export const getAllProductsCotations = async(id) => {
         'http://localhost:8080/api/productQuotation/' + id
     )
     return data
+}
+
+export const createTransaction = async(id) => {
+    const { data } = await axios.post(
+        'http://localhost:8080/api/quotation/transaction/' + id
+    )
 }

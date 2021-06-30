@@ -1,14 +1,8 @@
 package com.projectzeus.springapi.resources;
 
 import com.projectzeus.springapi.DTO.QuotationDTO;
-import com.projectzeus.springapi.models.Enterprise;
-import com.projectzeus.springapi.models.Product;
-import com.projectzeus.springapi.models.ProductQuotation;
-import com.projectzeus.springapi.models.Quotation;
-import com.projectzeus.springapi.repository.EnterpriseRepository;
-import com.projectzeus.springapi.repository.ProductQuotationRepository;
-import com.projectzeus.springapi.repository.ProductRepository;
-import com.projectzeus.springapi.repository.QuotationRepository;
+import com.projectzeus.springapi.models.*;
+import com.projectzeus.springapi.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +23,8 @@ public class QuotationResource {
     ProductQuotationRepository productsQuotation;
     @Autowired
     EnterpriseRepository enterprises;
+    @Autowired
+    BidRepository bids;
 
     @GetMapping("/quotation/{id}")
     public ResponseEntity<Quotation> getQuotation(@PathVariable("id") long id) {
@@ -37,7 +33,7 @@ public class QuotationResource {
 
     @GetMapping("/quotations")
     public ResponseEntity<List<Quotation>> getAll() {
-        return new ResponseEntity<>(quotations.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(quotations.findAllByOpenIsTrue(), HttpStatus.OK);
     }
 
     @GetMapping("/quotations/get-all-by-enterprise/{cnpj}")
@@ -95,5 +91,28 @@ public class QuotationResource {
     public ResponseEntity<String> deleteQuotation(@RequestBody Quotation quotation) {
         quotations.delete(quotation);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("quotation/transaction/{id}")
+    public ResponseEntity<String> transaction(@PathVariable("id") Long id) {
+        Bid bid = bids.findBidById(id);
+        if(bid == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        Enterprise seller = bid.getEnterprise();
+        Quotation quotation = bid.getQuotation();
+
+        if(seller == null || quotation == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        seller = enterprises.findOneByCnpj(seller.getCnpj());
+        quotation = quotations.findOneById(quotation.getId());
+        if(seller != null && quotation != null) {
+            quotation.setSeller(seller);
+            quotation.setOpen(false);
+            quotations.save(quotation);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }

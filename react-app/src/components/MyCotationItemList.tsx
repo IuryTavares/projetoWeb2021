@@ -8,6 +8,7 @@ import { registerBid } from '../api/bidService'
 import { getAllBidsByCotation } from '../api/bidService'
 import { useEffect } from 'react'
 import { Bid } from '../interfaces/Bid'
+import { createTransaction } from '../api/cotationService'
 
 type Props = {
     data: Cotation
@@ -25,16 +26,10 @@ export function MyCotationItemList({ data }: Props){
     const handleShowSell = () => setShowSell(true);
 
     // Create Bid
-    const [bidPrice, setBidPrice] = useState('')
-
-    const handleSubmitTransaction = (event) => {
-        event.preventDefault()
-        registerBid(
-            data.id,
-            bidPrice
+    const handleSubmitTransaction = (bid: Bid) => {
+        createTransaction(
+            bid.id
         )
-
-        setBidPrice("")
 
         handleCloseSell()
     }
@@ -51,7 +46,6 @@ export function MyCotationItemList({ data }: Props){
         getAllBidsByCotation(data.id)
             .then(res => setBids(res))
             .catch(err => console.log(err))
-        console.log(bids)
     }
 
     return(
@@ -70,7 +64,7 @@ export function MyCotationItemList({ data }: Props){
                                 { data.startDate.substring(0 , 10)} - { data.endDate.substring(0 , 10) }
                             </div>
                             <div className="col d-none d-xl-block">
-                                PE
+                                { data.open == true ? "Ativa" : "Finalizada" }
                             </div>
                             <div className="col-sm-2 ">
                                 <div className="row align-items-center">
@@ -145,7 +139,7 @@ export function MyCotationItemList({ data }: Props){
                                                                                             <stop stopColor="#9e4ef5" offset="100%" />
                                                                                         </linearGradient>
                                                                                     </svg>
-                                                                                    <button type="submit" className="p-0" style={{border: "none",backgroundColor: "transparent"}}>
+                                                                                    <button onClick={ () => handleSubmitTransaction(bid)} className="p-0" style={{border: "none",backgroundColor: "transparent"}}>
                                                                                         <AiFillCheckCircle size="1.5rem" style={{ fill: "url(#blue-gradient)"}}/>
                                                                                     </button>
                                                                                 </Col>

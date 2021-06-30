@@ -13,16 +13,16 @@ const TitleItemList = ({ titles }: Props) => {
                     <div className="container-fluid">
                         <div className="row align-items-center">
                             <div className="col">
-                                {titles[0]}
+                                { titles[0] }
                             </div>
                             <div className="col d-none d-xl-block" >
-                                {titles[1]}
+                                { titles[1] } 
                             </div>
                             <div className="col d-none d-sm-block">
-                                {titles[2]}
+                                { titles[2] }
                             </div>
                             <div className="col d-none d-xl-block">
-                                {titles[3]}
+                                { titles[3] }
                             </div>
                             <div className="col-2"></div>
                         </div>

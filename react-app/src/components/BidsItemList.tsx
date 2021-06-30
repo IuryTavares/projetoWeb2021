@@ -1,5 +1,5 @@
 import {Card, Modal, Row, Col} from 'react-bootstrap'
-import styles from '../styles/components/BidsItemList.module.css'
+import styles from '../styles/components/CardItemList.module.css'
 import {AiOutlineEye} from 'react-icons/ai'
 import { useState } from 'react'
 import { Bid } from '../interfaces/Bid'
@@ -28,12 +28,12 @@ export function BidsItemList( { bid } : Props ){
                             {bid.quotation.enterprise.fantasyName}
                         </div>
                         <div className="col d-none d-sm-block">
-                            {bid.quotation.startDate} - {bid.quotation.endDate}
+                            {bid.quotation.startDate.substring(0 , 10)} - {bid.quotation.endDate.substring(0 , 10)}
                         </div>
                         <div className="col d-none d-xl-block">
                             {bid.priceValue}
                         </div>
-                        <div className="col ">
+                        <div className="col-sm-2">
                             <div className="row align-items-center">
                                 <div className="col d-none d-sm-block">
                                     <a href="#">

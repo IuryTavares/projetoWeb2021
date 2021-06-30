@@ -30,40 +30,59 @@ function MyApp({ Component, pageProps, router }) {
     const [selected1, setSelected1] = useState('')
     const [selected2, setSelected2] = useState('')
     const [selected3, setSelected3] = useState('')
-    const [selectedTransactionIcon, setSelectedTransactionIcon] = useState('')
+    const [selected4, setSelected4] = useState('')
 
     const [selecteda, setSelecteda] = useState('')
     const [selectedb, setSelectedb] = useState('')
     const [selectedc, setSelectedc] = useState('')
-    const [selectedTransaction, setSelectedTransaction] = useState('')
+    const [selectedd, setSelectedd] = useState('')
 
     useEffect(() => {
         if (router.pathname.startsWith('/quotations')) {
            setSelected1("url(#blue-gradient)")
            setSelected2("#6c757d")
            setSelected3("#6c757d")
+           setSelected4("#6c757d")
+           
            
            setSelecteda("#9e4ef5")
            setSelectedb("#6c757d")
            setSelectedc("#6c757d")
+           setSelectedd("#6c757d")
         }
         if (router.pathname.startsWith('/products')) {
             setSelected2("url(#blue-gradient)")
             setSelected1("#6c757d")
             setSelected3("#6c757d")
+            setSelected4("#6c757d")
 
             setSelectedb("#9e4ef5")
             setSelecteda("#6c757d")
             setSelectedc("#6c757d")
+            setSelectedd("#6c757d")
         }
         if (router.pathname.startsWith('/bids')) {
             setSelected2("#6c757d")
             setSelected1("#6c757d")
             setSelected3("url(#blue-gradient)")
+            setSelected4("#6c757d")
 
             setSelectedb("#6c757d")
             setSelecteda("#6c757d")
             setSelectedc("#9e4ef5")
+            setSelectedd("#6c757d")
+        }
+
+        if (router.pathname.startsWith('/transactions')) {
+            setSelected2("#6c757d")
+            setSelected1("#6c757d")
+            setSelected3("#6c757d")
+            setSelected4("url(#blue-gradient)")
+
+            setSelectedb("#6c757d")
+            setSelecteda("#6c757d")
+            setSelectedc("#6c757d")
+            setSelectedd("#9e4ef5")
         }
     })
 
@@ -187,16 +206,16 @@ function MyApp({ Component, pageProps, router }) {
                                         </a>
                                     </Link>
                                 </li>
-                                {/*<li className="mb-3">
+                                <li className="mb-3">
                                     <Link href="/transactions">
                                         <a href="#" className="px-0 text-secondary text-decoration-none">
-                                            <GoChecklist size="1.5rem" className="me-2 fs-5 bi-speedometer2"/>
-                                            <span style={{fontWeight: 600}} className="ms-1 d-none d-sm-inline text-secondary">
+                                            <GoChecklist size="1.5rem" style={{ fill: selected4}} className="me-2"/>
+                                            <span style={{fontWeight: 600, color: selectedd}} className="ms-1 d-none d-sm-inline">
                                                 Transações
                                             </span>
                                         </a>
                                     </Link>
-                                </li>*/}
+                                </li>
                             </ul>
                         </div>
                     </div>

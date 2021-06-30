@@ -21,6 +21,9 @@ public class Quotation implements Serializable {
     private Enterprise enterprise;
     @OneToMany(mappedBy = "quotation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductQuotation> productsQuotations;
+    @ManyToOne
+    @JoinColumn(name = "id_seller")
+    private Enterprise seller;
 
     public long getId() {
         return id;
@@ -75,4 +78,8 @@ public class Quotation implements Serializable {
     public boolean isOpen() { return open; }
 
     public void setOpen(boolean open) { this.open = open; }
+
+    public Enterprise getSeller() { return seller; }
+
+    public void setSeller(Enterprise seller) { this.seller = seller; }
 }

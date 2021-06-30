@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface QuotationRepository extends JpaRepository<Quotation, Long> {
     Quotation findOneById(Long id);
+    Quotation findQuotationById(Long id);
     List<Quotation> findQuotationsByEnterpriseId(Long id);
+    List<Quotation> findAllByOpenIsTrue();
 }
