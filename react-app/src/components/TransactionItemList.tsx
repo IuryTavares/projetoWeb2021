@@ -1,11 +1,16 @@
 import {Card, Modal, Row, Col} from 'react-bootstrap'
-import styles from '../styles/components/TransactionItemList.module.css'
+import styles from '../styles/components/CardItemList.module.css'
 import {AiOutlineEye} from 'react-icons/ai'
 import {GoKebabVertical} from 'react-icons/go'
 import { useState } from 'react'
-import { CardProduct } from './CardProduct'
+import CardProductCotation from './CardProductCotation'
+import { Cotation } from '../interfaces/Cotation'
 
-export function TransactionItemList(){
+type Props = {
+    cotation: Cotation
+}
+
+export function TransactionItemList({ cotation }: Props){
 
     const [details, setShowDetails] = useState(false);
     const handleCloseDetails = () => setShowDetails(false);
@@ -18,18 +23,18 @@ export function TransactionItemList(){
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col">
-                            Cotação
+                            { cotation.id }
                         </div>
                         <div className="col d-none d-xl-block" >
-                            Empresa
+                            { cotation.enterprise.fantasyName }
                         </div>
                         <div className="col d-none d-sm-block">
-                            02/07 - 00:00
+                            { cotation.startDate.substring(0 , 10)} - { cotation.endDate.substring(0 , 10) }
                         </div>
                         <div className="col d-none d-xl-block">
-                            500R$
+                            preço
                         </div>
-                        <div className="col ">
+                        <div className="col-sm-2">
                             <div className="row align-items-center">
                                 <div className="col d-none d-sm-block">
                                     <a href="#">
@@ -40,43 +45,15 @@ export function TransactionItemList(){
                                             <Modal.Title className={styles.title}>Produtos da Transação</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body className={styles.bgModal}>
-                                            <Row className="mb-1">
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                            </Row>
-                                            <Row className="mb-1">
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                            </Row>
-                                            <Row className="mb-1">
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                            </Row>
-                                            <Row className="mb-1">
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
-                                                <Col>
-                                                    <CardProduct/>
-                                                </Col>
+                                            <Row>
+                                                {cotation.productsQuotations.map((product) => 
+                                                    <Col className="col-12 col-sm-6" key={product.id}>
+                                                        <CardProductCotation data={product}/>
+                                                    </Col>
+                                                )}
                                             </Row>
                                         </Modal.Body>
                                     </Modal>
-                                </div>
-                                <div className="col">
-                                   <GoKebabVertical size="1.5rem"></GoKebabVertical>
                                 </div>
                             </div>
                         </div>

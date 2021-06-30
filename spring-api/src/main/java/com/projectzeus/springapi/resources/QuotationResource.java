@@ -32,8 +32,13 @@ public class QuotationResource {
     }
 
     @GetMapping("/quotations")
-    public ResponseEntity<List<Quotation>> getAll() {
+    public ResponseEntity<List<Quotation>> getAllOpen() {
         return new ResponseEntity<>(quotations.findAllByOpenIsTrue(), HttpStatus.OK);
+    }
+
+    @GetMapping("/quotations/close/{cnpj}")
+    public ResponseEntity<List<Quotation>> getAllClose(@PathVariable("cnpj") String cnpj) {
+        return new ResponseEntity<>(quotations.findBySellerCnpjAndOpenIsFalse(cnpj), HttpStatus.OK);
     }
 
     @GetMapping("/quotations/get-all-by-enterprise/{cnpj}")

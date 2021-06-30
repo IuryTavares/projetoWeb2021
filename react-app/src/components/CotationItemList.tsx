@@ -108,7 +108,7 @@ export function CotationItemList({ data }: Props){
                                                 <Modal.Body className={styles.bgModal}>
                                                         <Row>
                                                             {data.productsQuotations.map((product) => 
-                                                                <Col key={product.id}>
+                                                                <Col className="col-12 col-sm-6" key={product.id}>
                                                                     <CardProductCotation data={product}/>
                                                                 </Col>
                                                             )}

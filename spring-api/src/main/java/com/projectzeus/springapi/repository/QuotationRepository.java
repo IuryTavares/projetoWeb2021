@@ -9,4 +9,5 @@ public interface QuotationRepository extends JpaRepository<Quotation, Long> {
     Quotation findQuotationById(Long id);
     List<Quotation> findQuotationsByEnterpriseId(Long id);
     List<Quotation> findAllByOpenIsTrue();
+    List<Quotation> findBySellerCnpjAndOpenIsFalse(String cnpj);
 }

@@ -12,14 +12,14 @@ const MyQuotations = ({ cotations }: Props) => {
     return(
         <div className={`mb-2 px-0 mx-0`}>
             <div className="row">
-                <TitleItemList titles={["Cotação", "Empresa", "Início - Fim", "Uf"]}/>
+                <TitleItemList titles={["Cotação", "Empresa", "Início - Fim", "Situação"]}/>
             </div>
             {cotations.map((cotation) =>
                 <div className="row" key={ cotation.id }>
                     <MyCotationItemList data={ cotation }/>
                 </div>
             )}
-            </div>
+        </div>
     )
 }
 

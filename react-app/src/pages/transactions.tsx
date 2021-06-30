@@ -1,10 +1,16 @@
 import styles from '../styles/components/BidsPage.module.css'
 import { PaginationElement } from '../components/PaginationElement'
-import { TransactionItemListTitle } from '../components/TransactionItemListTitle'
 import { TransactionItemList } from '../components/TransactionItemList'
+import TitleItemList from '../components/TitleItemList'
+import { Cotation } from '../interfaces/Cotation'
+import { GetServerSideProps } from 'next'
+import { getAllBySellerAndClose } from '../api/cotationService'
 
+type Props = {
+    cotations: Cotation[]
+}
 
-export default function Transactions(){
+const Transactions = ({ cotations }: Props) => {
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`}>
             <div className="row">
@@ -12,41 +18,28 @@ export default function Transactions(){
                     <h5 className="mt-4 mb-3 ms-1 text-md-start text-center" style={{fontWeight: 600}}>Transações</h5>
                 </div>
             </div>
-
             <div className="row">
-                <TransactionItemListTitle></TransactionItemListTitle>
+                <TitleItemList titles={ ["Cotação", "Comprador", "Início - Fim", "Uf"] }/>
             </div>
-
-            <div className="row">
-                <TransactionItemList></TransactionItemList>
-            </div>
-            <div className="row">
-                <TransactionItemList></TransactionItemList>
-            </div>
-            <div className="row">
-                <TransactionItemList></TransactionItemList>
-            </div>
-            <div className="row">
-                <TransactionItemList></TransactionItemList>
-            </div>
-            <div className="row">
-                <TransactionItemList></TransactionItemList>
-            </div>
-            <div className="row">
-                <TransactionItemList></TransactionItemList>
-            </div>
-            <div className="row">
-                <TransactionItemList></TransactionItemList>
-            </div>
-            <div className="row">
-                <TransactionItemList></TransactionItemList>
-            </div>
-
-            <footer className={styles.footerContainer}>                
+            {
+                cotations.map((cotation) => 
+                    <div className="row" key={cotation.id}>
+                        <TransactionItemList cotation={ cotation }/>
+                    </div>
+                )
+            }
+            {/*<footer className={styles.footerContainer}>                
                 <div className="row" style={{position: 'absolute'}}>
                     <PaginationElement></PaginationElement>
                 </div>
-            </footer>
+            footer>*/}
         </div>
     );
 }
+
+export const getStaticProps: GetServerSideProps = async () => {
+    const cotations: Cotation[] = await getAllBySellerAndClose() ?? null
+    return { props: { cotations } }
+}
+
+export default Transactions

@@ -41,3 +41,11 @@ export const createTransaction = async(id) => {
         'http://localhost:8080/api/quotation/transaction/' + id
     )
 }
+
+export const getAllBySellerAndClose = async() => {
+    const cnpj = '11111111111111' // vai o cpnj
+    const { data } = await axios.get(
+        'http://localhost:8080/api/quotations/close/' + cnpj
+    )
+    return data
+}
