@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { Cotation } from '../interfaces/Cotation';
-import { Enterprise } from '../interfaces/Enterprise';
 
 export const registerCotation = async(startDate, endDate, description, ids) => {
     const cnpj = "11111111111111"
