@@ -18,14 +18,15 @@ import { getUser } from '../api/loginService';
 import { GetServerSideProps } from 'next';
 import { User } from '../interfaces/User';
 import { NavDropdown } from 'react-bootstrap'
-import { getCnpj, setCnpj, setCpf } from '../api/settings';
+import { isLogged, setCpf } from '../api/settings';
 import { useRouter } from 'next/router';
+import { destroyCookie } from 'nookies';
 
 type Props = {
     userLogged: User
 }
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps, router }, { userLogged } : Props) {
 
     if (router.pathname.startsWith('/register')) {
         return <Register/>
@@ -124,14 +125,14 @@ function MyApp({ Component, pageProps, router }) {
     }
 
     function logout () {
-        setCnpj('')
-        setCpf('')
+        destroyCookie(null, 'cnpj')
+        destroyCookie(null, 'cpf')
         router.reload(window.location.pathname)
     }
 
     const navDropdownTitle = (
         <span className ="me-1"><FaUserCircle style={{ fill: "url(#blue-gradient)"}} size="1.8rem" className="me-2 fs-5 bi-speedometer2"/> 
-            <span className="d-none d-sm-inline-block" style={{fontWeight: 600}}>Iury Tavares</span>
+            <span className="d-none d-sm-inline-block" style={{fontWeight: 600}}>Usuário</span>
         </span>
     );
 
@@ -243,10 +244,14 @@ function MyApp({ Component, pageProps, router }) {
     )
 }
 
-export const getStaticProps: GetServerSideProps = async () => {
-    const userLogged: User = await getUser() ?? null
-    console.log(userLogged.name)
-    return { props: { userLogged } }
-}
+/*export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const router = useRouter()
+    if (!isLogged) {
+        router.push('/login')
+    } else {
+        const userLogged: User = await getUser(ctx) ?? null
+        return { props: { userLogged } }
+    }
+}*/
 
 export default MyApp

@@ -32,7 +32,7 @@ export function TransactionItemList({ cotation }: Props){
                             { cotation.startDate.substring(0 , 10)} - { cotation.endDate.substring(0 , 10) }
                         </div>
                         <div className="col d-none d-xl-block">
-                            preço
+                            0,00R$
                         </div>
                         <div className="col-sm-2">
                             <div className="row align-items-center">

@@ -6,8 +6,8 @@ import {RiLockPasswordFill} from 'react-icons/ri'
 import Link from 'next/link'
 import { useState } from 'react'
 import { login } from '../api/loginService'
-import { setCpf, setCnpj, setCookie } from '../api/settings'
 import { useRouter } from 'next/router'
+import { setCookie } from "nookies"
 
 export default function Login() {
 
@@ -20,8 +20,14 @@ export default function Login() {
         login(email, password)
             .then(res => {
                 if (res != null) {
-                    setCpf(res.cpf)
-                    setCnpj(res.cnpj)
+                    setCookie(null, 'cpf', res.cpf, {
+                        path: '/',
+                        maxAge: 86400 * 7,
+                    })
+                    setCookie(null, 'cnpj', res.cnpj, {
+                        path: '/',
+                        maxAge: 86400 * 7,
+                    })
                     router.push('/quotations')
                 }
                 else console.log("null")

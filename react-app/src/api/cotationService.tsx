@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { getCnpj } from './settings';
+import { parseCookies } from 'nookies';
 
 export const registerCotation = async(startDate, endDate, description, ids) => {
-    const cnpj = getCnpj()
+    const cookies = parseCookies()
     const { data } = await axios.post(
-        'http://localhost:8080/api/quotation/create/' + cnpj,
+        'http://localhost:8080/api/quotation/create/' + cookies.cnpj,
         { quotation: {startDate, 
             endDate, 
             description}, 
@@ -20,10 +20,11 @@ export const getAllCotations = async() => {
     return data
 }
 
-export const getAllCotationsByEnterprise = async() => {
-    const cnpj = getCnpj()
+export const getAllCotationsByEnterprise = async(ctx) => {
+    const cookies = parseCookies(ctx)
+    console.log(cookies.cnpj)
     const { data } = await axios.get(
-        'http://localhost:8080/api/quotations/get-all-by-enterprise/' + cnpj
+        'http://localhost:8080/api/quotations/get-all-by-enterprise/' + cookies.cnpj
     )
     return data
 }
@@ -41,10 +42,10 @@ export const createTransaction = async(id) => {
     )
 }
 
-export const getAllBySellerAndClose = async() => {
-    const cnpj = getCnpj()
+export const getAllBySellerAndClose = async(ctx) => {
+    const cookies = parseCookies(ctx)
     const { data } = await axios.get(
-        'http://localhost:8080/api/quotations/close/' + cnpj
+        'http://localhost:8080/api/quotations/close/' + cookies.cnpj
     )
     return data
 }

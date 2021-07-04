@@ -45,7 +45,7 @@ export default function Bids( { bids }: Props ){
     );
 }
 
-export const getStaticProps: GetServerSideProps = async () => {
-  const bids: Bid[] = await getAllBidsByEnterprise() ?? null
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const bids: Bid[] = await getAllBidsByEnterprise(ctx) ?? null
   return { props: { bids } }
 }

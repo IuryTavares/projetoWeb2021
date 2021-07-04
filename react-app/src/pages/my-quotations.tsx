@@ -33,8 +33,8 @@ const MyQuotations = ({ cotations }: Props) => {
     )
 }
 
-export const getStaticProps: GetServerSideProps = async () => {
-    const cotations: Cotation[] = await getAllCotationsByEnterprise() ?? null
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const cotations: Cotation[] = await getAllCotationsByEnterprise(ctx) ?? null
     return { props: { cotations } }
 }
 

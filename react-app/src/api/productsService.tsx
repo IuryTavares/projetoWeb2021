@@ -1,10 +1,12 @@
 import axios from 'axios';
-import { getCnpj, getCookie } from './settings';
+import { getCnpj } from './settings';
+import { parseCookies } from 'nookies';
+import nookies from 'nookies'
 
 export const registerProduct = async(name, description, limitPrice, quantity, brand) => {
-    const cnpj = getCookie('cnpj')
+    const cookies = parseCookies()
     const { data } = await axios.post(
-        'http://localhost:8080/api/product/create/' + cnpj,
+        'http://localhost:8080/api/product/create/' + cookies.cnpj,
         { name, 
         description, 
         limitPrice, 
@@ -13,10 +15,10 @@ export const registerProduct = async(name, description, limitPrice, quantity, br
     )
 }
 
-export const getAllProducts = async() => {
-    const cnpj = getCnpj()
+export const getAllProducts = async(ctx) => {
+    const cookies = parseCookies(ctx)
     const { data } = await axios.get(
-        'http://localhost:8080/api/products/' + cnpj,
+        'http://localhost:8080/api/products/' + cookies.cnpj,
     )
     return data
 }

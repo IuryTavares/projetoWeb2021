@@ -30,7 +30,7 @@ const Transactions = ({ cotations }: Props) => {
                 </div>
             </div>
             <div className="row">
-                <TitleItemList titles={ ["Cotação", "Comprador", "Início - Fim", "Uf"] }/>
+                <TitleItemList titles={ ["Cotação", "Comprador", "Início - Fim", "Preço"] }/>
             </div>
             {
                 cotations.map((cotation) => 
@@ -48,8 +48,8 @@ const Transactions = ({ cotations }: Props) => {
     );
 }
 
-export const getStaticProps: GetServerSideProps = async () => {
-    const cotations: Cotation[] = await getAllBySellerAndClose() ?? null
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const cotations: Cotation[] = await getAllBySellerAndClose(ctx) ?? null
     return { props: { cotations } }
 }
 

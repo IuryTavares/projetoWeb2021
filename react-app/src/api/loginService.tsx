@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { parseCookies } from 'nookies';
 import { getCpf } from './settings';
 
 export const login = async(email: String, password: String) => {
@@ -9,10 +10,10 @@ export const login = async(email: String, password: String) => {
     return data
 }
 
-export const getUser = async() => {
-    const cpf = getCpf()
+export const getUser = async(ctx) => {
+    const cookies = parseCookies(ctx)
     const { data } = await axios.get(
-        'http://localhost:8080/user/' + cpf
+        'http://localhost:8080/user/' + cookies.cpf
     )
     return data
 }

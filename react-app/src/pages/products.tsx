@@ -5,11 +5,13 @@ import { IoAddCircleSharp } from 'react-icons/io5'
 import { RiShoppingCart2Fill } from 'react-icons/ri'
 import { useEffect, useState } from 'react'
 import { registerProduct, getAllProducts } from '../api/productsService'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import { Product } from '../interfaces/Product'
 import { registerCotation } from '../api/cotationService'
 import { useRouter } from 'next/router'
 import { isLogged } from '../api/settings'
+import { parseCookies } from 'nookies'
+import nookies from 'nookies'
 
 type Props = {
     items: Product[]
@@ -284,8 +286,8 @@ const Products = ( { items }: Props) => {
     )
 }
 
-export const getStaticProps: GetServerSideProps = async () => {
-    const items: Product[] = await getAllProducts() ?? null
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const items: Product[] = await getAllProducts(ctx) ?? null
     return { props: { items } }
 }
 

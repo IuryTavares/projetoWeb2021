@@ -9,6 +9,7 @@ import { Nav } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { isLogged } from '../api/settings'
+import { parseCookies } from 'nookies'
 
 type Props = {
     items: Cotation[]
