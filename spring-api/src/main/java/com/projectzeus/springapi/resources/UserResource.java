@@ -33,13 +33,13 @@ public class UserResource {
         if(!user.getPassword().equals(login.getPassword()))
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-        ResponseLoginDTO response = new ResponseLoginDTO(user.getEnterprise().getCnpj(), user.getCpf());
+        ResponseLoginDTO response = new ResponseLoginDTO(user.getCpf(), user.getEnterprise().getCnpj()  );
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") long id) {
-        return new ResponseEntity(users.findById(id), HttpStatus.OK);
+    @GetMapping("/user/{cpf}")
+    public ResponseEntity<User> getUser(@PathVariable("cpf") String cpf) {
+        return new ResponseEntity(users.findOneByCpf(cpf), HttpStatus.OK);
     }
 
     @PostMapping("/user/create")

@@ -6,8 +6,12 @@ import {RiLockPasswordFill} from 'react-icons/ri'
 import Link from 'next/link'
 import { useState } from 'react'
 import { login } from '../api/loginService'
+import { setCpf, setCnpj, setCookie } from '../api/settings'
+import { useRouter } from 'next/router'
 
 export default function Login() {
+
+    const router = useRouter()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -15,10 +19,10 @@ export default function Login() {
     const handleSubmit = () => {
         login(email, password)
             .then(res => {
-                console.log("foi")
                 if (res != null) {
-                    localStorage.setItem ('cnpj', res.cnpj)
-                    localStorage.setItem ('cpf', res.cpf)
+                    setCpf(res.cpf)
+                    setCnpj(res.cnpj)
+                    router.push('/quotations')
                 }
                 else console.log("null")
             })

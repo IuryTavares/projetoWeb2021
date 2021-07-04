@@ -5,12 +5,23 @@ import TitleItemList from '../components/TitleItemList'
 import { Cotation } from '../interfaces/Cotation'
 import { GetServerSideProps } from 'next'
 import { getAllBySellerAndClose } from '../api/cotationService'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { isLogged } from '../api/settings'
 
 type Props = {
     cotations: Cotation[]
 }
 
 const Transactions = ({ cotations }: Props) => {
+
+    const router = useRouter()
+
+    useEffect(() => {
+      if(!isLogged()) 
+        router.push('/login')
+    })
+
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`}>
             <div className="row">

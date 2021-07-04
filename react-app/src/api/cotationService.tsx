@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { getCnpj } from './settings';
 
 export const registerCotation = async(startDate, endDate, description, ids) => {
-    const cnpj = "11111111111111"
+    const cnpj = getCnpj()
     const { data } = await axios.post(
         'http://localhost:8080/api/quotation/create/' + cnpj,
         { quotation: {startDate, 
@@ -20,7 +21,7 @@ export const getAllCotations = async() => {
 }
 
 export const getAllCotationsByEnterprise = async() => {
-    const cnpj = "11111111111111"
+    const cnpj = getCnpj()
     const { data } = await axios.get(
         'http://localhost:8080/api/quotations/get-all-by-enterprise/' + cnpj
     )
@@ -41,7 +42,7 @@ export const createTransaction = async(id) => {
 }
 
 export const getAllBySellerAndClose = async() => {
-    const cnpj = '11111111111111' // vai o cpnj
+    const cnpj = getCnpj()
     const { data } = await axios.get(
         'http://localhost:8080/api/quotations/close/' + cnpj
     )

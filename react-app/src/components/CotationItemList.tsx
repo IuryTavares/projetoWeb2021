@@ -71,17 +71,29 @@ export function CotationItemList({ data }: Props){
                                             <Modal.Body className={styles.bgModal}>
                                                 <Row>
                                                     <Col>
-                                                        <label className="mb-1">Cotação: <span className="text-secondary">{ data.id }</span></label>
-                                                        <label className="mb-1">Empresa: <span className="text-secondary">{ data.enterprise.fantasyName }</span></label>
-                                                        <label className="mb-1">Data de Início: <span className="text-secondary">{ data.startDate.substring(0 , 10) }</span></label>
-                                                        <label className="mb-1">Data de Término: <span className="text-secondary">{ data.endDate.substring(0 , 10) }</span></label>
-                                                        <label className="mb-1">UF: <span className="text-secondary">Pernambuco</span></label>
-                                                        <label className="mb-1">
-                                                            Descrição: 
-                                                            <span className="mb-2 text-secondary">
-                                                                { data.description }
+                                                        <Row>
+                                                            <span className="mb-1">Cotação: <span className="text-secondary">{ data.id }</span></span>
+                                                        </Row>
+                                                        <Row>
+                                                            <span className="mb-1">Empresa: <span className="text-secondary">{ data.enterprise.fantasyName }</span></span>
+                                                        </Row>
+                                                        <Row>
+                                                            <span className="mb-1">Data de Início: <span className="text-secondary">{ data.startDate.substring(0 , 10) }</span></span>
+                                                        </Row>
+                                                        <Row>
+                                                            <span className="mb-1">Data de Término: <span className="text-secondary">{ data.endDate.substring(0 , 10) }</span></span>
+                                                        </Row>
+                                                        <Row>
+                                                            <span className="mb-1">UF: <span className="text-secondary">Pernambuco</span></span>
+                                                        </Row>
+                                                        <Row>
+                                                            <span className="mb-1">
+                                                                Descrição: 
+                                                                <span className="mb-2 text-secondary">
+                                                                    { data.description }
+                                                                </span>
                                                             </span>
-                                                        </label>
+                                                        </Row>
                                                     </Col>
                                                     <Col>
                                                         <ul className="list-group">

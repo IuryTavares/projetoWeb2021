@@ -3,17 +3,25 @@ import styles from '../styles/components/MyProductsPage.module.css'
 import CardProduct from '../components/CardProduct'
 import { IoAddCircleSharp } from 'react-icons/io5'
 import { RiShoppingCart2Fill } from 'react-icons/ri'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { registerProduct, getAllProducts } from '../api/productsService'
 import { GetServerSideProps } from 'next'
 import { Product } from '../interfaces/Product'
 import { registerCotation } from '../api/cotationService'
+import { useRouter } from 'next/router'
+import { isLogged } from '../api/settings'
 
 type Props = {
     items: Product[]
 }
 
 const Products = ( { items }: Props) => {
+
+    const router = useRouter()
+    useEffect(() => {
+      if(!isLogged()) 
+        router.push('/login')
+    })
 
     // Add product
     const [name, setName] = useState('')
@@ -50,7 +58,7 @@ const Products = ( { items }: Props) => {
         let productsToAdd = items.filter((item) => {
             if(item.checkCotation) return item
         }).map((i) => { return i.id })
-        
+        console.log(initDate)
         registerCotation(
             initDate, 
             endDate, 

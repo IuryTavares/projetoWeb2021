@@ -14,6 +14,16 @@ import Register from './register'
 import Login from './login'
 import RegisterEnterprise from './enterprise'
 import { useState, useEffect } from 'react';
+import { getUser } from '../api/loginService';
+import { GetServerSideProps } from 'next';
+import { User } from '../interfaces/User';
+import { NavDropdown } from 'react-bootstrap'
+import { getCnpj, setCnpj, setCpf } from '../api/settings';
+import { useRouter } from 'next/router';
+
+type Props = {
+    userLogged: User
+}
 
 function MyApp({ Component, pageProps, router }) {
 
@@ -113,6 +123,18 @@ function MyApp({ Component, pageProps, router }) {
         }
     }
 
+    function logout () {
+        setCnpj('')
+        setCpf('')
+        router.reload(window.location.pathname)
+    }
+
+    const navDropdownTitle = (
+        <span className ="me-1"><FaUserCircle style={{ fill: "url(#blue-gradient)"}} size="1.8rem" className="me-2 fs-5 bi-speedometer2"/> 
+            <span className="d-none d-sm-inline-block" style={{fontWeight: 600}}>Iury Tavares</span>
+        </span>
+    );
+
     return ( 
         <div>
             <nav className={`${styles.shadowBar} navbar navbar-expand-lg navbar-light py-0`}>
@@ -149,19 +171,9 @@ function MyApp({ Component, pageProps, router }) {
                                 <BsFillChatDotsFill className="mx-3 mx-sm-2 fs-5 bi-speedometer2"/>
                             </a>
                         </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span className ="me-1"><FaUserCircle style={{ fill: "url(#blue-gradient)"}} size="1.8rem" className="me-2 fs-5 bi-speedometer2"/> 
-                                    <span className="d-none d-sm-inline-block" style={{fontWeight: 600}}>Iury Tavares</span>
-                                </span>
-                            </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="#">Perfil</a>
-                                <a className="dropdown-item" href="#">Configurações</a>
-                            <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="#">Sair</a>
-                            </div>
-                        </li>
+                        <NavDropdown title={navDropdownTitle} id="basic-nav-dropdown">
+                            <NavDropdown.Item onClick={() => logout() }>Sair</NavDropdown.Item>
+                        </NavDropdown>
                     </ul>
                 </div>
             </nav>
@@ -229,6 +241,12 @@ function MyApp({ Component, pageProps, router }) {
             </div>
         </div>
     )
+}
+
+export const getStaticProps: GetServerSideProps = async () => {
+    const userLogged: User = await getUser() ?? null
+    console.log(userLogged.name)
+    return { props: { userLogged } }
 }
 
 export default MyApp

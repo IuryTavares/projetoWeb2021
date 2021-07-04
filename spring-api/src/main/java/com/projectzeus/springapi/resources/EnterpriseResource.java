@@ -26,9 +26,8 @@ public class EnterpriseResource {
         return new ResponseEntity(enterprises.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/enterprise/create")
-    public ResponseEntity<String> createEnterprise(@RequestBody Enterprise enterprise) {
-        String cpf = "11370233418";
+    @PostMapping("/enterprise/create/{cpf}")
+    public ResponseEntity<String> createEnterprise(@RequestBody Enterprise enterprise, @PathVariable("cpf") String cpf) {
         User userLogged = users.findOneByCpf(cpf);
         enterprises.save(enterprise);
         if(userLogged != null) {

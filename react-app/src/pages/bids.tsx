@@ -5,12 +5,22 @@ import TitleItemList from '../components/TitleItemList';
 import { Bid } from '../interfaces/Bid';
 import { GetServerSideProps } from 'next';
 import { getAllBidsByEnterprise } from '../api/bidService';
+import { useEffect } from 'react';
+import { isLogged } from '../api/settings'
+import { useRouter } from 'next/router'
 
 type Props = {
   bids: Bid[]
 }
 
-export default function Bids( {bids}: Props ){
+export default function Bids( { bids }: Props ){
+    
+    const router = useRouter()
+    useEffect(() => {
+      if(!isLogged()) 
+        router.push('/login')
+    })
+
     return(
         <div className={`${styles.divCard} mb-2 px-0 mx-0`}>
             <div className="row">

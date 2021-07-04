@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import {useRouter} from 'next/router'
 import { registerUser } from '../api/register'
+import { setTempCpf } from '../api/settings'
 
 const RegisterUser = () => {
     const [name, setName] = useState('')
@@ -29,6 +30,7 @@ const RegisterUser = () => {
                 password, 
                 cpf  
             )
+            setTempCpf(cpf)
             router.push({
                 pathname: '/enterprise',
             })
