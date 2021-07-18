@@ -9,6 +9,7 @@ import com.projectzeus.springapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
@@ -30,6 +31,13 @@ public class UserResource {
 
         if(user == null)
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+        //LOGIN
+        /*String newPassword = new BCryptPasswordEncoder().encode(user.getPassword());
+        login.setPassword(newPassword);
+        System.out.println(login.getPassword());
+        System.out.println(user.getPassword());*/
+
         if(!user.getPassword().equals(login.getPassword()))
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
@@ -49,6 +57,8 @@ public class UserResource {
         if(findUser != null)
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
+        String newPassword = new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(newPassword);
         users.save(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
